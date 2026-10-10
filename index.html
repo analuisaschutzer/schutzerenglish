@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ana Luísa Schützer · Professional English</title>
+<meta name="description" content="Aulas de conversação com professor, com método personalizado para você desenvolver a comunicação que sua profissão exige.">
+<meta property="og:title" content="Ana Luísa Schützer · Professional English">
+<meta property="og:description" content="Inglês para a sua carreira. Aulas de conversação com método próprio.">
+<meta property="og:image" content="hero.jpg">
+<link rel="icon" href="logo-als.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ====== CORES (mude aqui se quiser) ====== */
+  :root{
+    --vinho:#4a1518;      /* títulos e blocos escuros */
+    --vermelho:#a3141e;   /* destaques */
+    --botao:#8f1a2e;      /* botão principal */
+    --creme:#faf0ea;      /* fundo claro */
+    --branco:#fffdfb;
+    --texto:#2b1a1a;
+    --cinza:#7a6662;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Mulish",system-ui,sans-serif;color:var(--texto);background:var(--creme);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .kicker{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza);margin-bottom:22px}
+  .kicker img{width:30px;height:30px;object-fit:cover;object-position:50% 20%;border-radius:4px}
+  h2{font-weight:800;color:var(--vinho);font-size:clamp(30px,4.2vw,50px);line-height:1.12;letter-spacing:-.01em}
+  .lead{color:var(--cinza);font-size:clamp(17px,1.7vw,21px);margin-top:18px}
+  section{padding:88px 0}
+
+  /* ====== BOTÕES ====== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:16px;text-decoration:none;border-radius:999px;font-weight:600;font-size:18px;padding:16px 34px;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-main{background:var(--botao);color:#fff;box-shadow:0 10px 24px -12px rgba(143,26,46,.7)}
+  .btn-main:hover{background:#7a1426}
+  .btn-main .sep{width:1px;align-self:stretch;background:rgba(255,255,255,.55)}
+  .btn-main .tag{font-family:"Playfair Display",serif;font-size:20px;letter-spacing:.06em}
+  .btn-line{border:1.5px solid var(--botao);color:var(--botao);background:rgba(255,253,251,.6)}
+  .btn-line:hover{background:#fff}
+  .btn-square{border-radius:10px;background:var(--vinho);color:#fff;font-weight:800;padding:20px 34px;width:100%;max-width:500px;justify-content:flex-start}
+  .btn-square:hover{background:#5d1b1f}
+
+  /* ====== 1. TOPO ====== */
+  .hero{position:relative;overflow:hidden;padding:56px 0 0;background:
+      radial-gradient(1200px 600px at 80% 20%,#fff 0%,transparent 60%),
+      linear-gradient(180deg,#fbf3ec,#f6e9df)}
+  .hero::before,.hero::after{content:"";position:absolute;border:1.5px solid rgba(185,120,95,.35);border-radius:50%;pointer-events:none}
+  .hero::before{width:900px;height:900px;left:-520px;bottom:-640px}
+  .hero::after{width:1100px;height:700px;right:-600px;top:-300px;transform:rotate(-20deg)}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:end;position:relative;z-index:1}
+  .hero-text{padding-bottom:80px}
+  .name{font-family:"Playfair Display",serif;font-weight:400;color:#6e0f19;font-size:clamp(44px,6.2vw,82px);line-height:1;letter-spacing:-.02em}
+  .sub{letter-spacing:.42em;font-size:clamp(13px,1.4vw,18px);color:#3d2a2a;margin:16px 0 34px}
+  .hero-btns{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+  .hero-btns .btn-main{min-width:min(100%,520px);justify-content:space-between}
+  .hero-btns .btn-line{min-width:min(100%,360px)}
+  .headline{font-family:"Playfair Display",serif;font-weight:400;color:#6e0f19;font-size:clamp(46px,6vw,78px);line-height:1;margin-top:44px;letter-spacing:-.02em}
+  .hero p.desc{font-size:clamp(17px,1.6vw,20px);max-width:560px;margin-top:16px;color:#3d2a2a}
+  .hero-photo img{width:100%;max-width:470px;margin-left:auto;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 22%),linear-gradient(to bottom,transparent 0,#000 18%);
+    -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 22%),linear-gradient(to bottom,transparent 0,#000 18%);mask-composite:intersect}
+
+  /* ====== 2. PARA QUEM É ====== */
+  .split{display:grid;grid-template-columns:1.3fr .9fr;gap:60px;align-items:center}
+  .quem{background:var(--branco)}
+  .lista{margin-top:44px;display:grid;gap:30px}
+  .item{display:grid;grid-template-columns:62px 1fr;align-items:start}
+  .item .n{font-weight:800;color:var(--vermelho);font-size:26px;line-height:1.2}
+  .item h3{color:var(--vinho);font-size:22px;font-weight:800}
+  .item p{margin-top:4px;font-size:17px}
+  .foto{border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(74,21,24,.45)}
+  .foto img{width:100%;height:100%;object-fit:cover}
+
+  /* ====== 3. MÉTODO EM 4 ETAPAS ====== */
+  .etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px}
+  .card{border-radius:22px;padding:36px 30px;min-height:330px;display:flex;flex-direction:column;background:var(--branco);border:1px solid #f1dfd6}
+  .card .num{font-size:46px;font-weight:800;color:var(--vermelho);line-height:1}
+  .card h3{font-size:22px;color:var(--vinho);margin:26px 0 auto;font-weight:800;line-height:1.25}
+  .card p{font-size:16px;margin-top:28px}
+  .card.dark{background:var(--vinho);border-color:var(--vinho)}
+  .card.dark h3{color:#fff}.card.dark p{color:#f3e4de}
+  .nota{margin-top:40px;color:var(--vermelho);font-weight:800;font-size:clamp(17px,1.6vw,20px)}
+
+  /* ====== 4. HISTÓRIA ====== */
+  .historia{background:var(--creme)}
+  .historia .split{grid-template-columns:.75fr 1.25fr}
+  .historia h4{color:var(--vinho);font-size:clamp(18px,1.8vw,24px);font-weight:800;margin-top:12px}
+  .linha{margin-top:36px;display:grid;gap:22px}
+  .marco small{display:flex;align-items:center;gap:10px;color:var(--vermelho);font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .marco small::before{content:"";width:8px;height:8px;background:var(--vermelho)}
+  .marco p{margin:4px 0 0 18px;font-size:17px}
+
+  /* ====== 5. EQUIPE ====== */
+  .equipe{background:var(--branco);padding:0}
+  .equipe .split{grid-template-columns:1.5fr .7fr;gap:0;align-items:stretch}
+  .equipe .txt{padding:88px 60px 88px 0}
+  .equipe hr{border:0;border-top:1px solid #e6d7d0;margin:40px 0}
+  .equipe h3{color:var(--vinho);font-size:clamp(22px,2.2vw,28px);font-weight:800;line-height:1.25}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:30px}
+  .duas h5{color:var(--vermelho);font-size:19px;font-weight:800}
+  .missao{margin-top:40px;color:var(--vinho);font-weight:800;font-size:20px}
+  .tulipa{background:#f6e3d8 url(tulipa-arte.jpg) right center/cover no-repeat;min-height:420px}
+
+  /* ====== 6. MERCADO ====== */
+  .mercado{background:var(--creme)}
+  .mercado .split{grid-template-columns:1.25fr .75fr}
+  .exemplo{margin-top:34px;color:var(--cinza);font-size:15px}
+  .valor{font-size:clamp(56px,8vw,96px);font-weight:800;color:var(--vermelho);line-height:1;margin-top:6px}
+  .conta{font-weight:800;color:var(--vinho);font-size:22px;margin-top:8px}
+  .mercado p.big{font-size:clamp(18px,1.8vw,22px);margin-top:30px}
+  .aviso{font-size:12px;color:var(--cinza);margin-top:34px}
+
+  /* ====== 7. AULA ====== */
+  .aula{padding:0;background:var(--creme)}
+  .aula .split{grid-template-columns:.7fr 1.3fr;gap:0;align-items:stretch}
+  .aula .foto{border-radius:0;box-shadow:none}
+  .aula .claro{padding:80px 60px}
+  .aula .claro p{font-size:19px;margin-top:22px}
+  .aula .claro p+p{color:var(--cinza)}
+  .aula .split>div:last-child{display:flex;flex-direction:column}
+  .aula .escuro{background:var(--vinho);color:#fff;padding:64px 60px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .aula .escuro h2{color:#fff;font-size:clamp(28px,3.2vw,40px)}
+  .aula .escuro p{color:#f3e4de;font-size:18px;margin-top:18px}
+
+  /* ====== 8. CHAMADA FINAL ====== */
+  .cta{background:var(--branco)}
+  .cta .split{grid-template-columns:.8fr 1.2fr}
+  .cta h3{color:var(--vermelho);font-size:clamp(20px,2vw,25px);font-weight:800;margin-top:22px;line-height:1.3}
+  .cta ul{list-style:none;margin:28px 0;display:grid;gap:12px}
+  .cta li{display:flex;gap:12px;align-items:center;color:var(--vinho);font-weight:800;font-size:20px}
+  .cta li::before{content:"";width:8px;height:8px;background:var(--vermelho);flex:none}
+  .preco{color:var(--cinza);font-size:17px;margin-bottom:18px}
+
+  footer{background:var(--vinho);color:#f3e4de;padding:40px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer a{text-decoration:none;font-weight:700}
+  footer nav{display:flex;gap:22px}
+
+  /* ====== CELULAR ====== */
+  @media (max-width:900px){
+    section{padding:64px 0}
+    .hero{padding-top:40px}
+    .hero .wrap,.split,.historia .split,.equipe .split,.mercado .split,.aula .split,.cta .split{grid-template-columns:1fr;gap:36px}
+    .hero-text{padding-bottom:0}
+    .hero-photo img{margin:0 auto;max-width:380px}
+    .etapas{grid-template-columns:1fr 1fr}
+    .historia .foto,.cta .foto{max-height:460px}
+    .historia .foto{order:2}
+    .equipe .txt{padding:64px 0 24px}
+    .tulipa{min-height:240px;background-position:center}
+    .duas{grid-template-columns:1fr}
+    .aula .foto{max-height:480px}
+    .aula .claro,.aula .escuro{padding:56px 24px}
+    .mercado .foto{max-height:480px}
+  }
+  @media (max-width:560px){
+    .etapas{grid-template-columns:1fr}
+    .card{min-height:0}
+    .card h3{margin-bottom:0}
+    .btn{font-size:16px;padding:15px 24px}
+    .hero-btns .btn-main,.hero-btns .btn-line{width:100%}
+    .sub{letter-spacing:.28em}
+    .item{grid-template-columns:46px 1fr}
+    h2 br,h3 br{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. TOPO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <h1 class="name">Ana Luísa Schützer</h1>
+      <p class="sub">PROFESSIONAL ENGLISH</p>
+      <div class="hero-btns">
+        <a class="btn btn-main" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20de%20Professional%20English." target="_blank" rel="noopener">
+          Professional English Agendamento <span class="sep"></span><span class="tag">ALS</span>
+        </a>
+        <a class="btn btn-line" href="https://www.linkedin.com/in/analuisaschutzer/" target="_blank" rel="noopener">Siga no LinkedIn</a>
+      </div>
+      <p class="headline">Inglês para a<br>sua carreira.</p>
+      <p class="desc">Aulas de conversação com professor, com método personalizado para você desenvolver a comunicação que sua profissão exige.</p>
+    </div>
+    <div class="hero-photo"><img src="hero.jpg" alt="Ana Luísa Schützer"></div>
+  </div>
+</header>
+
+<!-- 2. PARA QUEM É -->
+<section class="quem">
+  <div class="wrap split">
+    <div>
+      <div class="kicker"><img src="logo-als.jpg" alt="">ALS English</div>
+      <h2>Para quem é este curso?</h2>
+      <div class="lista">
+        <div class="item"><span class="n">01</span><div><h3>Quer um trabalho melhor</h3><p>Não está satisfeita com o salário atual, mas o inglês ainda não acompanha as exigências do próximo cargo.</p></div></div>
+        <div class="item"><span class="n">02</span><div><h3>Busca ganhar em dólar ou euro</h3><p>Quer trabalhar para empresas do exterior e competir por oportunidades internacionais.</p></div></div>
+        <div class="item"><span class="n">03</span><div><h3>Sonha com trabalho remoto</h3><p>Procura mais liberdade financeira e geográfica sem abrir mão de uma carreira sólida.</p></div></div>
+        <div class="item"><span class="n">04</span><div><h3>Quer usar o inglês na vida</h3><p>Vê utilidade em viagens, mas não descarta transformar o idioma em uma ferramenta profissional.</p></div></div>
+      </div>
+    </div>
+    <div class="foto"><img src="evento.jpg" alt="Ana Luísa em evento profissional" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- 3. MÉTODO EM 4 ETAPAS -->
+<section>
+  <div class="wrap">
+    <div class="kicker"><img src="logo-als.jpg" alt="">ALS English</div>
+    <h2>Do conhecimento à comunicação.</h2>
+    <p class="lead">Cada etapa prepara a seguinte, respeitando o seu nível, seus objetivos e o seu tempo.</p>
+    <div class="etapas">
+      <div class="card dark"><span class="num">1</span><h3>Avaliação e planejamento</h3><p>Entendemos sua situação, o que você já sabe, os pontos fracos e o que precisa aprender.</p></div>
+      <div class="card"><span class="num">2</span><h3>Contextualização</h3><p>Construímos repertório dentro de situações que fazem sentido para sua realidade e seus objetivos.</p></div>
+      <div class="card dark"><span class="num">3</span><h3>Repetição orientada</h3><p>Trabalhamos pronúncia, formação de frases e respostas. Repetir é essencial — quando feito da maneira certa.</p></div>
+      <div class="card"><span class="num">4</span><h3>Aplicação prática</h3><p>Você conversa em inglês de verdade, consolida o que aprendeu e avança até a conversação livre.</p></div>
+    </div>
+    <p class="nota">Os erros fazem parte. Nosso trabalho é preencher as lacunas até que você se comunique com segurança.</p>
+  </div>
+</section>
+
+<!-- 4. MINHA HISTÓRIA -->
+<section class="historia" style="background:var(--branco)">
+  <div class="wrap split">
+    <div class="foto"><img src="historia.jpg" alt="Ana Luísa criança com o pai em frente à Estátua da Liberdade" loading="lazy"></div>
+    <div>
+      <div class="kicker"><img src="logo-als.jpg" alt="">ALS English</div>
+      <h2>Minha história com o inglês.</h2>
+      <h4>Morei nos Estados Unidos dos 6 aos 11 anos, graças aos meus pais.</h4>
+      <p class="lead">Voltei ao Brasil com fluência, mas com um inglês ainda infantilizado. Ao trabalhar em escolas de idiomas, precisei estudar e desenvolver uma comunicação profissional. Hoje ensino esse caminho de forma estruturada e aplicável.</p>
+      <div class="linha">
+        <div class="marco"><small>Antes de 2020</small><p>Atuação em grandes marcas de escolas de inglês e atendimento a clientes do mercado de luxo.</p></div>
+        <div class="marco"><small>2020–2021 · Luxury market / High-end English</small><p>Projeto particular de alfabetização em inglês para herdeiros de uma das famílias mais ricas do Brasil.</p></div>
+        <div class="marco"><small>2021–presente · Intérprete internacional</small><p>Atuação para uma empresa dos Estados Unidos.</p></div>
+        <div class="marco"><small>Desde 2021 · Validação da metodologia</small><p>Trabalho autônomo com aulas e material próprios. Mais de 200 alunos atendidos individualmente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. EQUIPE -->
+<section class="equipe" style="background:var(--creme)">
+  <div class="wrap split">
+    <div class="txt">
+      <div class="kicker"><img src="logo-als.jpg" alt="">ALS English</div>
+      <h2>Um método próprio.<br>Uma equipe que acompanha você.</h2>
+      <p class="lead">Desde 2025, um time de teachers aplica o método desenvolvido por Ana Luísa, ampliando os resultados e contribuindo para a aprovação de alunos em vagas internacionais.</p>
+      <hr>
+      <h3>Teachers escolhidas com confiança<br>e acompanhadas de perto.</h3>
+      <p style="margin-top:14px;font-size:17px">Todas trabalham com o material próprio da escola e são acompanhadas diretamente por Ana Luísa. A seleção considera a qualidade do inglês, a trajetória e a compatibilidade com os valores da ALS.</p>
+      <div class="duas">
+        <div><h5>Acompanhamento pedagógico</h5><p>Progresso observado a cada aula e contato com o professor para dúvidas.</p></div>
+        <div><h5>Inglês aplicado à sua realidade</h5><p>Vocabulário da sua área, entrevistas, reuniões, viagens e grupo de alunos.</p></div>
+      </div>
+      <p class="missao">Nossa missão é melhorar vidas por meio do inglês.</p>
+    </div>
+    <div class="tulipa" role="img" aria-label="Tulipa vermelha"></div>
+  </div>
+</section>
+
+<!-- 6. MERCADO -->
+<section class="mercado" style="background:var(--branco)">
+  <div class="wrap split">
+    <div>
+      <div class="kicker"><img src="logo-als.jpg" alt="">Inglês como ferramenta profissional</div>
+      <h2>O mesmo trabalho pode<br>valer mais em outro mercado.</h2>
+      <p class="lead">(Por que olhar para o trabalho remoto internacional?)</p>
+      <p class="exemplo">Exemplo ilustrativo</p>
+      <p class="valor">US$ 2.500</p>
+      <p class="conta">× R$ 5,15 = R$ 12.875</p>
+      <p class="big">Esse valor, e muito mais, pode ser alcançado por profissionais que buscam uma vaga em empresa e também por autônomos e empresários que vendem serviços a clientes internacionais.</p>
+      <p class="lead">As possibilidades variam conforme a área, a experiência e o contrato.</p>
+      <p class="aviso">*Conversão ilustrativa, com câmbio hipotético. Não representa remuneração garantida.</p>
+    </div>
+    <div class="foto"><img src="aviao.jpg" alt="Ana Luísa olhando pela janela do avião" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- 7. AULA -->
+<section class="aula">
+  <div class="split">
+    <div class="foto"><img src="aula.jpg" alt="Ana Luísa" loading="lazy"></div>
+    <div>
+      <div class="claro">
+        <div class="kicker"><img src="logo-als.jpg" alt="">Qualidade do começo ao fim</div>
+        <h2>Desde a primeira aula,<br>você fala do começo ao final.</h2>
+        <p>Não importa o nível: a aula é planejada para que você forme frases, responda e pratique dentro do que já consegue fazer.</p>
+        <p>O intervalo entre os encontros também faz parte do método. É quando você amadurece o conteúdo, escuta os áudios e realiza as atividades orientadas.</p>
+      </div>
+      <div class="escuro">
+        <h2>A confiança no processo<br>é parte do aprendizado.</h2>
+        <p>Seguir as orientações e manter contato com o idioma entre as aulas torna o progresso mais consistente. Confiança significa trabalhar em parceria, fazer perguntas e aplicar o que foi orientado com constância.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PRÓXIMO PASSO -->
+<section class="cta" id="comecar">
+  <div class="wrap split">
+    <div class="foto"><img src="estudo.jpg" alt="Ana Luísa estudando no notebook" loading="lazy"></div>
+    <div>
+      <div class="kicker"><img src="logo-als.jpg" alt="">Próximo passo</div>
+      <h2>Você não precisa de um inglês perfeito para conquistar uma oportunidade incrível.</h2>
+      <h3>Mas quanto melhor for o seu inglês,<br>mais você se destaca profissionalmente.</h3>
+      <p style="font-size:19px;margin-top:20px">Vamos entender seu nível e preparar seu inglês para a próxima etapa profissional.</p>
+      <ul>
+        <li>Todo o material do curso</li>
+        <li>Aulas com professor semanalmente</li>
+        <li>Acompanhamento pedagógico</li>
+      </ul>
+      <p class="preco">Planos a partir de R$347 mensais</p>
+      <a class="btn btn-square" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20as%20aulas%20de%20Professional%20English." target="_blank" rel="noopener">Quero começar agora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© ALS English · Ana Luísa Schützer</span>
+    <nav>
+      <a href="https://wa.me/5516982130824" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.linkedin.com/in/analuisaschutzer/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ana Luísa Schützer · Links</title>
+<meta name="description" content="Professional English com Ana Luísa Schützer: agendamento, LinkedIn e mais.">
+<link rel="icon" href="logo-als.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--vinho:#6e0f19;--botao:#8f1a2e;--texto:#3d2a2a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{min-height:100vh;font-family:"Mulish",system-ui,sans-serif;color:var(--texto);-webkit-font-smoothing:antialiased;
+    background:radial-gradient(700px 500px at 50% 0%,#fff 0%,transparent 70%),linear-gradient(180deg,#fbf3ec,#f4e5da);
+    position:relative;overflow-x:hidden}
+  body::before,body::after{content:"";position:fixed;border:1.5px solid rgba(185,120,95,.35);border-radius:50%;pointer-events:none}
+  body::before{width:700px;height:700px;left:-480px;bottom:-420px}
+  body::after{width:800px;height:520px;right:-560px;top:-200px;transform:rotate(-20deg)}
+  main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:48px 20px 40px;text-align:center}
+  .foto{width:132px;height:132px;border-radius:50%;margin:0 auto;padding:4px;background:linear-gradient(135deg,#c9927e,#8f1a2e)}
+  .foto img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fbf3ec;display:block}
+  h1{font-family:"Playfair Display",serif;font-weight:400;color:var(--vinho);font-size:38px;line-height:1.05;margin-top:22px;letter-spacing:-.01em}
+  .sub{letter-spacing:.38em;font-size:12px;margin-top:10px}
+  .bio{margin:18px auto 30px;font-size:15px;max-width:340px;line-height:1.5}
+  .links{display:grid;gap:14px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:14px;min-height:58px;padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;transition:transform .15s ease,background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .main{background:var(--botao);color:#fff;box-shadow:0 10px 24px -12px rgba(143,26,46,.7);justify-content:space-between;padding-left:28px}
+  .main:hover{background:#7a1426}
+  .main .tag{display:flex;align-items:center;gap:14px;font-family:"Playfair Display",serif;font-size:18px;letter-spacing:.06em}
+  .main .tag::before{content:"";width:1px;height:28px;background:rgba(255,255,255,.55)}
+  .line{border:1.5px solid var(--botao);color:var(--botao);background:rgba(255,253,251,.65)}
+  .line:hover{background:#fff}
+  .logo{width:70px;margin:40px auto 0;border-radius:8px;opacity:.9}
+  footer{margin-top:10px;font-size:12px;color:#8a7570}
+</style>
+</head>
+<body>
+<main>
+  <div class="foto"><img src="perfil.jpg" alt="Ana Luísa Schützer"></div>
+  <h1>Ana Luísa Schützer</h1>
+  <p class="sub">PROFESSIONAL ENGLISH</p>
+  <p class="bio">Inglês para a sua carreira. Aulas de conversação com método personalizado.</p>
+
+  <!-- BOTÕES: para adicionar um novo, copie uma linha <a ...>...</a> e troque o link e o texto -->
+  <nav class="links">
+    <a class="btn main" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20de%20Professional%20English." target="_blank" rel="noopener">
+      Professional English Agendamento <span class="tag">ALS</span>
+    </a>
+    <a class="btn line" href="index.html">Conheça o curso</a>
+    <a class="btn line" href="https://www.linkedin.com/in/analuisaschutzer/" target="_blank" rel="noopener">Siga no LinkedIn</a>
+  </nav>
+
+  <img class="logo" src="logo-als.jpg" alt="ALS English">
+  <footer>© ALS English</footer>
+</main>
+</body>
+</html>
