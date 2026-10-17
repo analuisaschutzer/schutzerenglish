@@ -140,8 +140,9 @@
     }
     .vip p {
       margin: 0 auto;
-      max-width: 20ch;
-      font-size: clamp(20px, 5.6vw, 26px);
+      max-width: 30ch;
+      font-size: clamp(19px, 5.3vw, 25px);
+      text-wrap: balance;
       line-height: 1.3;
       text-shadow: 0 2px 14px rgba(17, 17, 16, 0.85);
     }
@@ -166,9 +167,12 @@
       border-radius: 999px;
       background: var(--cherry);
       color: var(--white);
-      font-size: clamp(21px, 6vw, 26px);
+      font-size: clamp(20px, 5.6vw, 25px);
+      line-height: 1.15;
+      text-align: center;
+      text-wrap: balance;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       text-decoration: none;
       box-shadow: 0 10px 28px rgba(172, 18, 59, 0.35);
@@ -182,6 +186,57 @@
       outline-offset: 4px;
     }
 
+    /* Textos de apoio abaixo do botão */
+    .vip p.note {
+      max-width: none;
+      margin: 14px auto 0;
+      font-size: 17px;
+      line-height: 1.3;
+      color: rgba(246, 237, 223, 0.85);
+      text-shadow: none;
+    }
+    .vip p.proof {
+      max-width: 26ch;
+      margin: 18px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(var(--halo), 0.28);
+      font-size: 17px;
+      line-height: 1.3;
+      color: rgba(246, 237, 223, 0.85);
+      text-shadow: none;
+    }
+
+    /* Botão fixo no celular: aparece só enquanto o botão principal não está na tela */
+    .sticky { display: none; }
+    @media (max-width: 699px) {
+      .sticky {
+        display: block;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 10;
+        padding: 26px var(--gutter) calc(14px + env(safe-area-inset-bottom));
+        background: linear-gradient(to top, #111110 60%, rgba(17, 17, 16, 0));
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(24px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+        pointer-events: none;
+      }
+      .sticky .cta {
+        min-height: 58px;
+        padding: 10px 20px;
+        font-size: 20px;
+        animation: none;
+      }
+      .sticky.show {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: auto;
+      }
+    }
+
     /* Botão secundário (Instagram): menor e só com contorno */
     .insta {
       display: flex;
@@ -190,7 +245,7 @@
       width: 100%;
       max-width: 300px;
       min-height: 52px;
-      margin: 18px auto 0;
+      margin: 22px auto 0;
       padding: 10px 22px;
       border: 1.5px solid rgba(var(--halo), 0.85);
       border-radius: 999px;
@@ -212,6 +267,11 @@
     }
 
     @media (prefers-reduced-motion: no-preference) {
+      .cta { animation: glow 2.6s ease-in-out infinite; }
+      @keyframes glow {
+        0%, 100% { box-shadow: 0 10px 28px rgba(172, 18, 59, 0.35); }
+        50%      { box-shadow: 0 10px 40px rgba(172, 18, 59, 0.65); }
+      }
       .arrow { animation: nudge 1.8s ease-in-out infinite; }
       @keyframes nudge {
         0%, 100% { transform: translateY(0); }
@@ -256,14 +316,35 @@
 
     <section class="vip">
       <h2>Lista VIP</h2>
-      <p>Receba com condições especiais exclusivas</p>
+      <p>Receba aqui as condições especiais exclusivas da Oferta Black</p>
       <svg class="arrow" viewBox="0 0 34 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
         <path d="M17 4v34"/>
         <path d="M6 28l11 11 11-11"/>
       </svg>
-      <a class="cta" href="https://forms.gle/U3hZe2BRAJvNQgcr7" target="_blank" rel="noopener noreferrer">Se inscreva</a>
+      <a class="cta" id="cta" href="https://forms.gle/U3hZe2BRAJvNQgcr7" target="_blank" rel="noopener noreferrer">Quero entrar na Lista VIP</a>
+      <p class="note">Inscrição gratuita e sem compromisso</p>
+      <p class="proof">Mais de 200 alunos atendidos individualmente</p>
       <a class="insta" href="https://instagram.com/analuschutzer" target="_blank" rel="noopener noreferrer">Acesse nosso insta</a>
     </section>
   </main>
+
+  <div class="sticky" id="sticky" aria-hidden="true">
+    <a class="cta" href="https://forms.gle/U3hZe2BRAJvNQgcr7" target="_blank" rel="noopener noreferrer" tabindex="-1">Entrar na Lista VIP</a>
+  </div>
+
+  <script>
+    (function () {
+      var cta = document.getElementById('cta');
+      var bar = document.getElementById('sticky');
+      if (!cta || !bar || !('IntersectionObserver' in window)) return;
+      var link = bar.querySelector('a');
+      new IntersectionObserver(function (entries) {
+        var visible = entries[0].intersectionRatio >= 0.9;
+        bar.classList.toggle('show', !visible);
+        bar.setAttribute('aria-hidden', visible ? 'true' : 'false');
+        link.tabIndex = visible ? -1 : 0;
+      }, { threshold: [0, 0.25, 0.5, 0.75, 0.9, 1] }).observe(cta);
+    })();
+  </script>
 </body>
 </html>
