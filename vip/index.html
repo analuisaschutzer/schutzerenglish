@@ -105,13 +105,22 @@
               mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 100%);
       pointer-events: none;
     }
+    /* Foto menor, encostada na direita (o notebook sai pela borda da tela);
+       a borda esquerda se dissolve no fundo */
     .hero img {
       display: block;
-      width: 100%;
+      width: 86%;
+      margin-left: auto;
       height: auto;
       object-fit: contain;
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
-              mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+      -webkit-mask-image:
+        linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%),
+        linear-gradient(to right, transparent 0%, #000 10%);
+      -webkit-mask-composite: source-in;
+              mask-image:
+        linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%),
+        linear-gradient(to right, transparent 0%, #000 10%);
+              mask-composite: intersect;
     }
 
     /* Chamada final */
@@ -219,11 +228,11 @@
       .hero img {
         -webkit-mask-image:
           linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%),
-          linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+          linear-gradient(to right, transparent 0%, #000 10%, #000 96%, transparent 100%);
         -webkit-mask-composite: source-in;
                 mask-image:
           linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%),
-          linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+          linear-gradient(to right, transparent 0%, #000 10%, #000 96%, transparent 100%);
                 mask-composite: intersect;
       }
     }
@@ -232,7 +241,7 @@
 <body>
   <main class="page">
     <header>
-      <span class="badge">Oferta Black</span>
+      <span class="badge">Oferta Black em breve</span>
       <h1><span>Inglês em</span><span>Dólar</span></h1>
       <p class="hook">Ajustes no seu inglês para uma vida profissional melhor</p>
     </header>
