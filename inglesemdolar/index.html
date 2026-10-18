@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Inglês em Dólar | ALS English</title>
+  <meta name="description" content="Prepare seu inglês para o mercado internacional. 3 aulas gravadas + 3 PDFs com exemplos em inglês, traduções e exercícios de aplicação. Exclusivo Black, com a professora Ana Luísa Schützer.">
+  <!-- Página em revisão: fora do Google até a Ana aprovar. Para liberar, apagar a linha abaixo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FAF4EC">
+  <meta name="color-scheme" content="light">
+  <link rel="preload" as="image" href="/inglesemdolar/img/capa.jpeg" fetchpriority="high">
+  <style>
+    :root {
+      --cream: #FAF4EC;
+      --ink: #42251F;
+      --cherry: #AC123B;
+      --cherry-dark: #8F0F31;
+      --pink: #F0E1DB;
+      --grey: #EEE8E1;
+      --muted: #75645E;
+      --white: #FFFFFF;
+      --gutter: 24px;
+      --serif: Georgia, "Times New Roman", Times, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 19px;
+      line-height: 1.45;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 var(--gutter); }
+    .s { padding: 56px 0 60px; scroll-margin-top: 8px; }
+    .s + .s { border-top: 1px solid rgba(66, 37, 31, 0.1); }
+
+    /* Títulos e textos */
+    h2 {
+      margin: 0 0 14px;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(28px, 8vw, 32px);
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    h2.accent, .accent {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(28px, 7.8vw, 32px);
+      line-height: 1.2;
+      color: var(--cherry);
+    }
+    p { margin: 0 0 18px; }
+    .lead { font-size: clamp(19px, 5.2vw, 20px); }
+    .fine { font-size: 17px; line-height: 1.4; color: var(--muted); }
+    .gap-top { margin-top: 34px; }
+
+    /* Cartões */
+    .card {
+      margin: 12px 0;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: var(--pink);
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .card.white { background: var(--white); }
+    .card.grey { background: var(--grey); }
+
+    /* Fotos inteiras, sem corte */
+    .ph { margin: 30px auto; width: min(82%, 400px); }
+    .ph img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+    .ph.cut img { border-radius: 0; }
+
+    /* Botão principal */
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 560px;
+      min-height: 76px;
+      margin: 34px auto 0;
+      padding: 16px 22px;
+      border-radius: 26px;
+      background: var(--cherry);
+      color: var(--white);
+      font-size: clamp(20px, 5.5vw, 24px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(172, 18, 59, 0.28);
+      transition: background-color 0.15s ease, transform 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta:hover { background: var(--cherry-dark); }
+    .cta:active { transform: scale(0.985); }
+    .cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+    /* 1. Capa */
+    .capa { position: relative; max-width: 640px; margin: 0 auto; padding: clamp(84px, 24vw, 104px) var(--gutter) 56px; }
+    .capa .top {
+      position: absolute; z-index: 3;
+      top: 18px; left: var(--gutter); right: var(--gutter);
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .capa .logo { display: block; width: clamp(64px, 17vw, 88px); height: auto; }
+    .pill {
+      display: inline-block;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .retrato { position: relative; margin: 0 calc(-1 * var(--gutter) + 8px); }
+    .retrato .tulipa {
+      position: absolute; z-index: 0;
+      left: 50%; top: 6%;
+      width: 88%; height: auto;
+      transform: translateX(-50%);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .retrato .foto {
+      position: relative; z-index: 1;
+      display: block; width: 100%; height: auto;
+      -webkit-mask-image: url(/inglesemdolar/img/capa-mascara.webp);
+              mask-image: url(/inglesemdolar/img/capa-mascara.webp);
+      -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+    }
+    @supports not ((mask-image: url(x)) or (-webkit-mask-image: url(x))) {
+      .retrato .foto { mix-blend-mode: multiply; }
+    }
+    h1 {
+      margin: 8px 0 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(46px, 13.6vw, 72px);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .capa .cta { margin-top: 30px; }
+
+    /* 2. Público */
+    .perfil-lead { margin-top: 6px; }
+
+    /* 3. Oportunidades */
+    .usd {
+      margin: 4px 0 0;
+      font-size: clamp(42px, 12vw, 54px);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .brl {
+      margin: 0 0 8px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 13vw, 60px);
+      line-height: 1.1;
+      color: var(--cherry);
+    }
+    .tag {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* 4. Módulos */
+    .mod .num { margin: 0 0 8px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; color: var(--cherry); text-transform: uppercase; }
+    .mod .nome { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(24px, 6.6vw, 27px); line-height: 1.2; }
+    .mod .pilar { margin: 0 0 16px; font-size: 16px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cherry); }
+    .mod ul { margin: 0; padding: 0; list-style: none; text-align: left; }
+    .mod li { position: relative; margin: 0 0 10px; padding-left: 22px; }
+    .mod li:last-child { margin-bottom: 0; }
+    .mod li::before { content: "•"; position: absolute; left: 3px; color: var(--cherry); font-weight: 800; }
+
+    /* 5. História */
+    .depoimento .quem { margin: 0 0 8px; font-size: 21px; font-weight: 800; }
+
+    /* 6. Oferta */
+    .preco .num { margin: 0 0 8px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; color: var(--cherry); text-transform: uppercase; }
+    .preco .nome { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(24px, 6.6vw, 27px); line-height: 1.2; }
+    .preco .de { margin: 0; font-size: 32px; line-height: 1.1; color: var(--muted); }
+    .seta { display: block; width: 46px; height: 58px; margin: 26px auto 8px; color: var(--cherry); }
+    .black { margin: 0 0 20px; font-size: 18px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cherry); }
+    .tudo { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: 0.04em; }
+    .total { margin: 0 0 10px; font-family: var(--serif); font-size: clamp(56px, 17vw, 68px); line-height: 1.05; color: var(--cherry); }
+    .parcelas { margin: 0 0 26px; font-size: clamp(21px, 5.8vw, 23px); }
+
+    /* Computador: mesma coluna central, sem texto ao lado das fotos */
+    @media (min-width: 700px) {
+      body { font-size: 20px; }
+      .s { padding: 72px 0 76px; }
+      h2 { font-size: 36px; }
+      h2.accent, .accent { font-size: 34px; }
+      .ph { width: min(70%, 400px); }
+      .capa { padding-top: 104px; padding-bottom: 72px; }
+      .retrato { margin: 0 -8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. CAPA -->
+  <header class="capa" id="capa">
+    <div class="top">
+      <img class="logo" src="/inglesemdolar/img/logo-als.webp" width="240" height="269" alt="ALS English">
+      <span class="pill">Exclusivo Black</span>
+    </div>
+    <div class="retrato">
+      <img class="tulipa" src="/inglesemdolar/img/tulipa.webp" width="700" height="693" alt="" aria-hidden="true">
+      <img class="foto" src="/inglesemdolar/img/capa.jpeg" width="1090" height="1443" alt="Ana Luísa Schützer, professora de inglês, de blazer preto e blusa cereja" fetchpriority="high">
+    </div>
+    <h1>Inglês<br>em Dólar</h1>
+    <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
+  </header>
+
+  <main>
+    <!-- 2. PÚBLICO -->
+    <section class="s" id="publico">
+      <div class="wrap">
+        <h2>Você não precisa de um inglês perfeito.</h2>
+        <p class="accent">Precisa de um inglês que comunique.</p>
+        <p class="lead">Mas o que é esse “inglês comunicável” que ainda não ensinaram a você?</p>
+        <p class="lead">É conseguir explicar o que você faz, entender o que pedem e transmitir suas ideias com clareza no trabalho.</p>
+
+        <h2 class="gap-top">Se você está aqui, é porque...</h2>
+        <p class="perfil-lead lead">Está cansado de um salário baixo e quer buscar novas oportunidades.</p>
+        <div class="card"><p>Quer um emprego melhor, mas seu inglês ainda não acompanha.</p></div>
+        <div class="card"><p>Já trabalha ou pensa em trabalhar para o exterior, remotamente ou morando em outro país, mas ainda não se sente confiante ao falar inglês.</p></div>
+        <div class="card"><p>Negocia com o exterior por meio do próprio negócio, mas sente insegurança ao se comunicar em inglês.</p></div>
+
+        <figure class="ph" style="margin-bottom:0">
+          <img src="/inglesemdolar/img/publico.webp" width="900" height="1600" loading="lazy" decoding="async" alt="Ana trabalhando no notebook ao ar livre, sob um deck de madeira com flores">
+        </figure>
+        <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
+      </div>
+    </section>
+
+    <!-- 3. OPORTUNIDADES -->
+    <section class="s" id="oportunidades">
+      <div class="wrap">
+        <h2>E se o seu próximo trabalho fosse remunerado em dólar?</h2>
+        <p class="lead">Imagine uma remuneração mensal de</p>
+        <p class="usd">US$ 2.500</p>
+        <p style="margin:6px 0 0;font-size:18px">Em reais, ficaria:</p>
+        <p class="brl">R$ 12.875</p>
+        <p class="fine">Conversão ilustrativa:<br>US$ 1 = R$ 5,15.</p>
+
+        <figure class="ph">
+          <img src="/inglesemdolar/img/oportunidades.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Notebook sobre uma mesa em frente a uma piscina, com prédios ao fundo">
+        </figure>
+
+        <h2>“Mas o meu trabalho pode ser remoto?”</h2>
+        <p class="lead">Se você faz um trabalho que pode ser feito no computador ou no celular, então existe oportunidade para você no mercado remoto internacional.</p>
+
+        <div class="card grey gap-top">
+          <p class="tag">Para quem empreende</p>
+          <p class="fine" style="margin:0">Vender para outros países também é uma possibilidade. Nessa conversão, uma venda de US$ 100 equivale a R$ 515; de US$ 500, a R$ 2.575.</p>
+        </div>
+        <p class="fine" style="margin-top:16px">Valores ilustrativos, antes de impostos, tarifas e custos. A cotação varia. A remuneração depende da vaga e da experiência profissional.</p>
+
+        <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
+      </div>
+    </section>
+
+    <!-- 4. PILARES E MÓDULOS -->
+    <section class="s" id="modulos">
+      <div class="wrap">
+        <h2>3 pilares para usar o inglês no trabalho.</h2>
+        <p class="lead">3 aulas gravadas + 3 PDFs com exemplos em inglês, traduções e exercícios de aplicação.</p>
+
+        <div class="card white mod" style="margin-top:26px">
+          <p class="num">Módulo 1</p>
+          <p class="nome">Entrevistas em inglês</p>
+          <p class="pilar">Apresente seu valor</p>
+          <ul>
+            <li>Apresentação, formação e experiência.</li>
+            <li>Como explicar o problema que você resolve.</li>
+            <li>Perguntas de entrevista e fusos horários.</li>
+            <li>Como conversar sobre remuneração.</li>
+          </ul>
+        </div>
+        <div class="card white mod">
+          <p class="num">Módulo 2</p>
+          <p class="nome">Erros comuns no trabalho</p>
+          <p class="pilar">Comunique-se com clareza</p>
+          <ul>
+            <li>Falsos cognatos e traduções literais.</li>
+            <li>Formação, experiência e compromisso.</li>
+            <li>Reuniões, computador e salário líquido.</li>
+            <li>Exemplos para aplicar à sua rotina.</li>
+          </ul>
+        </div>
+        <div class="card white mod">
+          <p class="num">Módulo 3</p>
+          <p class="nome">Siglas e expressões</p>
+          <p class="pilar">Entenda a linguagem do trabalho</p>
+          <ul>
+            <li>ASAP, FYI, EOD, COB, OOO e PTO.</li>
+            <li>Siglas de cargos e expressões profissionais.</li>
+            <li>Pedidos, mensagens e prazos.</li>
+            <li>Exercícios com gabarito.</li>
+          </ul>
+        </div>
+
+        <figure class="ph" style="margin-bottom:0">
+          <img src="/inglesemdolar/img/modulos.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Notebook sobre uma cadeira à beira da piscina, com a cidade ao fundo">
+        </figure>
+        <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
+      </div>
+    </section>
+
+    <!-- 5. QUEM VAI ENSINAR -->
+    <section class="s" id="historia">
+      <div class="wrap">
+        <h2>Quem vai ensinar você</h2>
+        <p class="accent" style="margin-bottom:12px">Ana Luísa Schützer</p>
+        <p class="lead">Professora, intérprete de português e inglês e fundadora da ALS English.</p>
+
+        <figure class="ph" style="width:min(64%, 320px)">
+          <img src="/inglesemdolar/img/historia.webp" width="900" height="1353" loading="lazy" decoding="async" alt="Foto de infância da Ana com o pai diante da Estátua da Liberdade, em Nova York">
+        </figure>
+
+        <p>Morei nos Estados Unidos dos 6 aos 11 anos. Ao voltar ao Brasil, precisei transformar o inglês da infância em uma ferramenta de trabalho.</p>
+        <p>Ensino desde os 19 anos. Passei por grandes redes de idiomas e desenvolvi um projeto particular de alfabetização em 2020 e 2021.</p>
+        <p>Desde 2021, trabalho como intérprete remota no mercado internacional, recebendo em dólar. Hoje também lidero a ALS English e uma equipe de professores treinados por mim.</p>
+
+        <h2 class="gap-top">O que aprendi no mercado internacional?</h2>
+        <p class="accent" style="font-size:clamp(21px,5.8vw,23px);font-family:var(--sans)">Clareza, atenção e compreensão do contexto fazem diferença todos os dias.</p>
+
+        <!--
+          DEPOIMENTOS (oculto de propósito): só entram no ar com relatos reais e autorizados.
+          Para ligar: apagar o atributo "hidden" da div abaixo e trocar os textos pelos depoimentos reais.
+        -->
+        <div hidden id="depoimentos">
+          <h2 class="gap-top">Quem aprendeu com a ALS English</h2>
+          <div class="card white depoimento"><p class="quem">Comunicação no trabalho</p><p class="fine">Espaço reservado para depoimento real autorizado.</p></div>
+          <div class="card white depoimento"><p class="quem">Entrevistas e evolução</p><p class="fine">Espaço reservado para depoimento real autorizado.</p></div>
+          <div class="card white depoimento"><p class="quem">Clareza e confiança</p><p class="fine">Espaço reservado para depoimento real autorizado.</p></div>
+        </div>
+
+        <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
+      </div>
+    </section>
+
+    <!-- 6. OFERTA -->
+    <section class="s" id="oferta">
+      <div class="wrap">
+        <h2>Prepare seu inglês para o mercado internacional.</h2>
+
+        <figure class="ph cut" style="width:min(72%, 340px)">
+          <img src="/inglesemdolar/img/blazer.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ana Luísa Schützer de blazer preto, segurando uma bolsa">
+        </figure>
+
+        <div class="card white preco">
+          <p class="num">Módulo 1</p>
+          <p class="nome">Entrevistas em inglês</p>
+          <p class="de"><span class="sr-only">De </span><s>R$ 299</s></p>
+        </div>
+        <div class="card white preco">
+          <p class="num">Módulo 2</p>
+          <p class="nome">Erros comuns no trabalho</p>
+          <p class="de"><span class="sr-only">De </span><s>R$ 299</s></p>
+        </div>
+        <div class="card white preco">
+          <p class="num">Módulo 3</p>
+          <p class="nome">Siglas e expressões</p>
+          <p class="de"><span class="sr-only">De </span><s>R$ 199</s></p>
+        </div>
+
+        <svg class="seta" viewBox="0 0 46 58" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M23 4v46"/>
+          <path d="M8 36l15 15 15-15"/>
+        </svg>
+        <p class="black">Exclusivamente nesta Black</p>
+        <p class="tudo">TUDO POR</p>
+        <p class="total">R$ 127</p>
+        <p class="parcelas">Em 10× de R$ 12,70<br>sem juros</p>
+
+        <div class="card"><p>Com uma professora de inglês especialista em mercado internacional.</p></div>
+
+        <!-- CHECKOUT: ainda sem link real. Trocar href="#oferta" pela URL do checkout quando a Ana informar. -->
+        <a class="cta" id="checkout" href="#oferta">Quero o inglês<br>em dólar</a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
