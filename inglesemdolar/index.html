@@ -83,11 +83,14 @@
     .card.grey { background: var(--grey); }
 
     /* Fotos inteiras, sem corte */
-    .ph { margin: 30px auto; width: min(82%, 400px); }
+    .ph { margin: 28px auto; }
     .ph img {
       display: block;
-      width: 100%;
-      height: auto;
+      margin: 0 auto;
+      width: auto;
+      max-width: 100%;
+      height: 300px;
+      height: clamp(250px, 44svh, 400px);
       object-fit: contain;
       border-radius: 14px;
     }
@@ -122,13 +125,13 @@
     .cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
 
     /* 1. Capa */
-    .capa { position: relative; max-width: 640px; margin: 0 auto; padding: clamp(84px, 24vw, 104px) var(--gutter) 56px; }
+    .capa { position: relative; max-width: 640px; margin: 0 auto; padding: 64px var(--gutter) 56px; }
     .capa .top {
       position: absolute; z-index: 3;
       top: 18px; left: var(--gutter); right: var(--gutter);
       display: flex; justify-content: space-between; align-items: flex-start;
     }
-    .capa .logo { display: block; width: clamp(64px, 17vw, 88px); height: auto; }
+    .capa .logo { display: block; width: clamp(54px, 14.5vw, 80px); height: auto; }
     .pill {
       display: inline-block;
       padding: 11px 22px;
@@ -141,7 +144,19 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .retrato { position: relative; margin: 0 calc(-1 * var(--gutter) + 8px); }
+    /* Janela do retrato: mostra do rosto até a cintura e se ajusta à altura da tela,
+       para título, frase e botão caberem na primeira tela do celular */
+    .retrato {
+      position: relative;
+      height: 300px;
+      height: clamp(220px, calc(100svh - 372px), 520px);
+      aspect-ratio: 1090 / 1040;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    }
     .retrato .tulipa {
       position: absolute; z-index: 0;
       left: 50%; top: 6%;
@@ -164,16 +179,23 @@
       .retrato .foto { mix-blend-mode: multiply; }
     }
     h1 {
-      margin: 8px 0 0;
+      margin: 4px 0 0;
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(46px, 13.6vw, 72px);
-      line-height: 1.08;
+      font-size: clamp(44px, 12.4vw, 68px);
+      line-height: 1.05;
       letter-spacing: 0.01em;
       text-transform: uppercase;
       color: var(--ink);
     }
-    .capa .cta { margin-top: 30px; }
+    .capa .sub {
+      margin: 10px auto 0;
+      max-width: 32ch;
+      font-size: 18px;
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+    .capa .cta { margin-top: 16px; }
 
     /* 2. Público */
     .perfil-lead { margin-top: 6px; }
@@ -210,8 +232,28 @@
     .mod li:last-child { margin-bottom: 0; }
     .mod li::before { content: "•"; position: absolute; left: 3px; color: var(--cherry); font-weight: 800; }
 
+    .rot { margin: 0 0 10px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cherry); }
+    .como { margin-top: 4px; }
+    .como ul { margin: 0; padding: 0; list-style: none; }
+    .como li { margin: 6px 0 0; }
+    .como li::before {
+      content: "";
+      display: inline-block;
+      width: 6px; height: 12px;
+      margin: 0 12px 3px 0;
+      border: solid var(--cherry);
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+
     /* 5. História */
-    .depoimento .quem { margin: 0 0 8px; font-size: 21px; font-weight: 800; }
+    .stat { margin: 6px 0 0; line-height: 1.15; }
+    .stat strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 9.5vw, 42px); color: var(--cherry); }
+    .stat span { font-size: 16px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+    /* Espaços reservados para depoimentos reais (a preencher) */
+    .vaga { background: transparent; border: 2px dashed rgba(66, 37, 31, 0.22); color: var(--muted); }
+    .vaga .rot { margin-bottom: 6px; color: var(--muted); }
+    .vaga p:last-child { font-size: 17px; }
 
     /* 6. Oferta */
     .preco .num { margin: 0 0 8px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; color: var(--cherry); text-transform: uppercase; }
@@ -229,9 +271,9 @@
       .s { padding: 72px 0 76px; }
       h2 { font-size: 36px; }
       h2.accent, .accent { font-size: 34px; }
-      .ph { width: min(70%, 400px); }
-      .capa { padding-top: 104px; padding-bottom: 72px; }
-      .retrato { margin: 0 -8px; }
+      .capa { padding-top: 72px; padding-bottom: 72px; }
+      .capa .sub { font-size: 20px; max-width: 36ch; }
+      .retrato { height: 300px; height: clamp(220px, calc(100svh - 425px), 520px); }
     }
   </style>
 </head>
@@ -248,6 +290,7 @@
       <img class="foto" src="/inglesemdolar/img/capa.jpeg" width="1090" height="1443" alt="Ana Luísa Schützer, professora de inglês, de blazer preto e blusa cereja" fetchpriority="high">
     </div>
     <h1>Inglês<br>em Dólar</h1>
+    <p class="sub">O inglês que você precisa para disputar vagas remotas internacionais, sem precisar ser perfeito.</p>
     <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
   </header>
 
@@ -306,6 +349,14 @@
         <h2>3 pilares para usar o inglês no trabalho.</h2>
         <p class="lead">3 aulas gravadas + 3 PDFs com exemplos em inglês, traduções e exercícios de aplicação.</p>
 
+        <div class="card como">
+          <p class="rot">Como funciona</p>
+          <ul>
+            <li>Aulas gravadas: assista quando quiser</li>
+            <li>Acesso por 1 ano</li>
+          </ul>
+        </div>
+
         <div class="card white mod" style="margin-top:26px">
           <p class="num">Módulo 1</p>
           <p class="nome">Entrevistas em inglês</p>
@@ -354,18 +405,20 @@
         <p class="accent" style="margin-bottom:12px">Ana Luísa Schützer</p>
         <p class="lead">Professora, intérprete de português e inglês e fundadora da ALS English.</p>
 
-        <figure class="ph" style="width:min(64%, 320px)">
-          <img src="/inglesemdolar/img/historia.webp" width="900" height="1353" loading="lazy" decoding="async" alt="Foto de infância da Ana com o pai diante da Estátua da Liberdade, em Nova York">
+        <figure class="ph">
+          <img src="/inglesemdolar/img/historia.webp" width="900" height="1353" loading="lazy" decoding="async" alt="Foto de infância da Ana diante da Estátua da Liberdade, em Nova York">
         </figure>
 
-        <p>Morei nos Estados Unidos dos 6 aos 11 anos. Ao voltar ao Brasil, precisei transformar o inglês da infância em uma ferramenta de trabalho.</p>
-        <p>Ensino desde os 19 anos. Passei por grandes redes de idiomas e desenvolvi um projeto particular de alfabetização em 2020 e 2021.</p>
-        <p>Desde 2021, trabalho como intérprete remota no mercado internacional, recebendo em dólar. Hoje também lidero a ALS English e uma equipe de professores treinados por mim.</p>
+        <p>Desde 2021, trabalho como intérprete remota no mercado internacional, recebendo em dólar. Morei nos Estados Unidos dos 6 aos 11 anos e ensino inglês desde os 19.</p>
+        <p class="stat"><strong>Mais de 1.500</strong> <span>alunos atendidos</span></p>
 
-        <h2 class="gap-top">O que aprendi no mercado internacional?</h2>
-        <p class="accent" style="font-size:clamp(21px,5.8vw,23px);font-family:var(--sans)">Clareza, atenção e compreensão do contexto fazem diferença todos os dias.</p>
-
-        <!-- DEPOIMENTOS: seção "Quem aprendeu com a ALS English" ainda não existe. Entra aqui, antes do botão, só com relatos reais e autorizados. -->
+        <!-- DEPOIMENTOS: 3 espaços reservados a pedido da Ana. Antes do lançamento (1º/11), trocar pelos depoimentos reais autorizados ou remover. -->
+        <div class="depos">
+          <h2 class="gap-top">Quem aprendeu com a ALS English</h2>
+          <div class="card vaga"><p class="rot">Depoimento 1</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
+          <div class="card vaga"><p class="rot">Depoimento 2</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
+          <div class="card vaga"><p class="rot">Depoimento 3</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
+        </div>
 
         <a class="cta" href="#oferta">Quero o inglês<br>em dólar</a>
       </div>
@@ -376,7 +429,7 @@
       <div class="wrap">
         <h2>Prepare seu inglês para o mercado internacional.</h2>
 
-        <figure class="ph cut" style="width:min(72%, 340px)">
+        <figure class="ph cut">
           <img src="/inglesemdolar/img/blazer.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Ana Luísa Schützer de blazer preto, segurando uma bolsa">
         </figure>
 
