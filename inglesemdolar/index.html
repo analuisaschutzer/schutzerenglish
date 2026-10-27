@@ -262,8 +262,10 @@
     .seta { display: block; width: 46px; height: 58px; margin: 26px auto 8px; color: var(--cherry); }
     .black { margin: 0 0 20px; font-size: 18px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cherry); }
     .tudo { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: 0.04em; }
-    .total { margin: 0 0 10px; font-family: var(--serif); font-size: clamp(56px, 17vw, 68px); line-height: 1.05; color: var(--cherry); }
-    .parcelas { margin: 0 0 26px; font-size: clamp(21px, 5.8vw, 23px); }
+    .vezes { margin: 6px 0 0; font-size: clamp(24px, 6.6vw, 28px); font-weight: 800; letter-spacing: 0.02em; }
+    .total { margin: 0 0 6px; font-family: var(--serif); font-size: clamp(64px, 19vw, 84px); line-height: 1.02; color: var(--cherry); white-space: nowrap; }
+    .parcelas { margin: 0 0 26px; font-size: 18px; color: var(--muted); }
+    .seguro { margin: 12px 0 0; font-size: 16px; color: var(--muted); }
 
     /* Computador: mesma coluna central, sem texto ao lado das fotos */
     @media (min-width: 700px) {
@@ -455,13 +457,14 @@
         </svg>
         <p class="black">Exclusivamente nesta Black</p>
         <p class="tudo">TUDO POR</p>
-        <p class="total">R$ 127</p>
-        <p class="parcelas">Em 10× de R$ 12,70<br>sem juros</p>
+        <p class="vezes">12x de</p>
+        <p class="total">R$ 20,37</p>
+        <p class="parcelas">no cartão de crédito</p>
 
         <div class="card"><p>Com uma professora de inglês especialista em mercado internacional.</p></div>
 
-        <!-- CHECKOUT: ainda sem link real. Trocar href="#oferta" pela URL do checkout quando a Ana informar. -->
-        <a class="cta" id="checkout" href="#oferta">Quero o inglês<br>em dólar</a>
+        <a class="cta" id="checkout" href="https://pay.kiwify.com.br/9X91uq0">Quero o inglês<br>em dólar</a>
+        <p class="seguro">Pagamento seguro pela Kiwify</p>
       </div>
     </section>
   </main>
