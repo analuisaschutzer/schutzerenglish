@@ -254,6 +254,18 @@
     .vaga { background: transparent; border: 2px dashed rgba(66, 37, 31, 0.22); color: var(--muted); }
     .vaga .rot { margin-bottom: 6px; color: var(--muted); }
     .vaga p:last-child { font-size: 17px; }
+    /* Depoimento real */
+    .depo { margin: 14px 0; padding: 26px 22px 24px; border-radius: 22px; background: var(--white); text-align: left; }
+    .depo blockquote { position: relative; margin: 0; padding-top: 28px; font-size: 18px; line-height: 1.55; }
+    .depo blockquote::before {
+      content: "\201C"; position: absolute; top: -10px; left: -2px;
+      font-family: var(--serif); font-size: 64px; line-height: 1; color: var(--cherry);
+    }
+    .depo blockquote p { margin: 0; }
+    .depo figcaption { display: flex; align-items: center; gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(66, 37, 31, 0.12); }
+    .depo figcaption img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex: none; }
+    .depo .quem { margin: 0; font-weight: 800; font-size: 18px; line-height: 1.25; }
+    .depo .cargo { margin: 2px 0 0; font-size: 16px; color: var(--muted); }
 
     /* 6. Oferta */
     .preco .num { margin: 0 0 8px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; color: var(--cherry); text-transform: uppercase; }
@@ -414,10 +426,16 @@
         <p>Desde 2021, trabalho como intérprete remota no mercado internacional, recebendo em dólar. Morei nos Estados Unidos dos 6 aos 11 anos e ensino inglês desde os 19.</p>
         <p class="stat"><strong>Mais de 1.500</strong> <span>alunos atendidos</span></p>
 
-        <!-- DEPOIMENTOS: 3 espaços reservados a pedido da Ana. Antes do lançamento (1º/11), trocar pelos depoimentos reais autorizados ou remover. -->
+        <!-- DEPOIMENTOS: 1 real (Millene, enviado pela Ana em 27/10) + 2 espaços reservados. Antes do lançamento (1º/11), trocar os espaços pelos depoimentos reais ou remover. -->
         <div class="depos">
           <h2 class="gap-top">Quem aprendeu com a ALS English</h2>
-          <div class="card vaga"><p class="rot">Depoimento 1</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
+          <figure class="depo">
+            <blockquote><p>Trabalhar com a Ana Lu foi transformador para a minha carreira e confiança, pois ela adaptou as aulas de inglês às minhas necessidades profissionais reais (como liderar reuniões de Scrum, elaborar documentações técnicas e ter clareza na conversação). Graças à sua abordagem personalizada e prática, superei a hesitação na comunicação com clientes e equipes internacionais, permitindo-me expressar com clareza e autoridade no mercado corporativo.</p></blockquote>
+            <figcaption>
+              <img src="/inglesemdolar/img/depo-millene.webp" width="240" height="240" loading="lazy" decoding="async" alt="Foto de Millene Fukuyoshi">
+              <div><p class="quem">Millene Fukuyoshi</p><p class="cargo">Gerente de Projetos<br>24 anos</p></div>
+            </figcaption>
+          </figure>
           <div class="card vaga"><p class="rot">Depoimento 2</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
           <div class="card vaga"><p class="rot">Depoimento 3</p><p>Espaço reservado para um depoimento real, com autorização.</p></div>
         </div>
