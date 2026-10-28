@@ -283,30 +283,156 @@
     }
     @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
   </style>
+  <!-- movimento -->
+  <script>document.documentElement.classList.add('js')</script>
+  <style id="movimento">
+    /* ================= Movimento =================
+       Só roda para quem não pediu "reduzir movimento" no celular/computador.
+       Sem JavaScript, nada fica escondido. */
+    [data-m-conta] { display: inline-block; text-align: right; white-space: nowrap; }
+    .m-l { display: block; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes m-sobe { from { opacity: 0; translate: 0 26px; } to { opacity: 1; translate: 0 0; } }
+      @keyframes m-desce { from { opacity: 0; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+      @keyframes m-surge { from { opacity: 0; translate: 0 44px; scale: 1.04; } to { opacity: 1; translate: 0 0; scale: 1; } }
+      @keyframes m-pop {
+        0%   { opacity: 0; scale: .35; rotate: -16deg; }
+        55%  { opacity: 1; scale: 1.14; rotate: 5deg; }
+        78%  { scale: .96; rotate: -2deg; }
+        100% { opacity: 1; scale: 1; rotate: 0deg; }
+      }
+      @keyframes m-aparece { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes m-linha { from { translate: 0 125%; } to { translate: 0 0; } }
+      @keyframes m-zoom-lento { from { scale: 1.1; } to { scale: 1; } }
+      @keyframes m-brilho { from { translate: -170% 0; } to { translate: 420% 0; } }
+      @keyframes m-brilho-loop { 0% { translate: -170% 0; } 22%, 100% { translate: 420% 0; } }
+      @keyframes m-pulo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+
+      /* Entrada ao abrir a página (não depende de JavaScript) */
+      .m-e, .m-e-desce, .m-e-surge, .m-e-pop, .m-e-aparece {
+        animation-duration: .8s;
+        animation-timing-function: cubic-bezier(.2, .7, .2, 1);
+        animation-delay: var(--d, 0s);
+        animation-fill-mode: both;
+      }
+      .m-e { animation-name: m-sobe; }
+      .m-e-desce { animation-name: m-desce; }
+      .m-e-surge { animation-name: m-surge; animation-duration: 1.15s; }
+      .m-e-pop { animation-name: m-pop; animation-duration: .85s; animation-timing-function: ease-out; }
+      .m-e-aparece { animation-name: m-aparece; animation-duration: 1.2s; animation-timing-function: ease; }
+
+      /* Título: cada linha sobe de dentro de uma "janela" */
+      .m-l { clip-path: inset(-.4em -.5em -.2em -.5em); }
+      .m-l > span { display: inline-block; animation: m-linha 1s cubic-bezier(.2, .75, .2, 1) var(--d, 0s) both; }
+
+      /* Revelação ao rolar (o JavaScript marca e revela) */
+      .js .m-r {
+        opacity: 0;
+        translate: 0 30px;
+        transition:
+          opacity .8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s),
+          translate .8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s),
+          scale .9s cubic-bezier(.2, .7, .2, 1) var(--d, 0s),
+          rotate .8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s),
+          transform .2s ease, box-shadow .25s ease, background-color .15s ease, border-color .15s ease;
+      }
+      .js .m-r.m-esq { translate: -36px 0; }
+      .js .m-r.m-gira { translate: 0 44px; rotate: -4deg; }
+      .js .m-r.m-foto { translate: 0 18px; }
+      .js .m-r.m-zoom {
+        translate: none;
+        scale: .84;
+        transition:
+          opacity .6s ease var(--d, 0s),
+          scale .85s cubic-bezier(.3, 1.45, .5, 1) var(--d, 0s),
+          transform .2s ease, box-shadow .25s ease;
+      }
+      .js .m-r.m-on { opacity: 1; translate: 0 0; scale: 1; rotate: 0deg; }
+
+      /* Ícones que "brotam" quando a seção aparece */
+      .js .m-icone { opacity: 0; scale: .3; rotate: -20deg; }
+      .js .m-on .m-icone, .js .m-icone.m-on { animation: m-pop .85s ease-out calc(var(--d, 0s) + .2s) both; }
+
+      /* Traço que se desenha da esquerda para a direita */
+      .js .m-traco { scale: 0 1; transform-origin: 0 50%; transition: scale 1.1s cubic-bezier(.65, 0, .35, 1) .1s; }
+      .js .m-traco.m-on { scale: 1 1; }
+
+      /* Preço antigo sendo riscado */
+      .js .m-risca { position: relative; display: inline-block; text-decoration: none; }
+      .js .m-risca::after {
+        content: "";
+        position: absolute; left: -7%; right: -7%; top: 50%;
+        height: 3px; margin-top: -1px; border-radius: 3px;
+        background: var(--m-risca-cor, currentColor);
+        rotate: -5deg;
+        scale: 0 1; transform-origin: 0 50%;
+        transition: scale .6s cubic-bezier(.65, 0, .35, 1) calc(var(--d, 0s) + .45s);
+      }
+      .js .m-on .m-risca::after { scale: 1 1; }
+
+      /* Brilho que passa pelo botão */
+      .m-brilho, .m-brilho-loop { position: relative; overflow: hidden; isolation: isolate; }
+      .m-brilho::after, .m-brilho-loop::after {
+        content: "";
+        position: absolute; top: 0; bottom: 0; left: 0; width: 30%;
+        background: linear-gradient(105deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .42) 50%, rgba(255, 255, 255, 0) 100%);
+        translate: -170% 0;
+        pointer-events: none;
+      }
+      .m-on .m-brilho::after, .m-brilho.m-on::after { animation: m-brilho 1.2s ease-in-out .75s 1 both; }
+      .m-brilho-loop::after { animation: m-brilho-loop 5.5s ease-in-out var(--d-brilho, 2s) infinite both; }
+
+      /* Computador: cartões levantam ao passar o mouse */
+      @media (hover: hover) and (pointer: fine) {
+        .m-hover:hover { transform: translateY(-6px); box-shadow: 0 18px 38px rgba(40, 20, 15, .14); }
+      }
+    }
+    /* Linha do tempo: traço ligando os marcos */
+    .linha li::after { content: ""; position: absolute; left: 3px; top: calc(.42em + 10px); width: 2px; height: calc(100% + 6px); background: rgba(194, 0, 4, .28); }
+    .linha li:last-child::after { display: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      /* Capa: tulipas com zoom lento ao abrir */
+      .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: inherit; animation: m-zoom-lento 2.8s cubic-bezier(.2, .7, .2, 1) both; pointer-events: none; }
+      .hero-palco::before { content: ""; position: absolute; inset: 0; z-index: 0; background: inherit; animation: m-zoom-lento 2.8s cubic-bezier(.2, .7, .2, 1) both; }
+      /* Linha do tempo se desenhando enquanto a pessoa rola */
+      .js .linha li.m-r::after { scale: 1 0; transform-origin: 50% 0; transition: scale .7s cubic-bezier(.65, 0, .35, 1) calc(var(--d, 0s) + .35s); }
+      .js .linha li.m-on::after { scale: 1 1; }
+      @media (hover: hover) and (pointer: fine) {
+        .btn-red:hover:not(:active), .btn-line:hover:not(:active) { transform: translateY(-3px); }
+      }
+      /* Computador: fotos de ponta a ponta entram com um zoom suave */
+      @media (min-width: 960px) {
+        .js .split .m-r.m-foto { translate: none; overflow: hidden; }
+        .js .split .m-foto img { scale: 1.12; transition: scale 1.8s cubic-bezier(.2, .7, .2, 1) var(--d, 0s); }
+        .js .split .m-foto.m-on img { scale: 1; }
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- 1. CAPA -->
   <header class="hero">
     <div class="hero-top">
-      <p class="hero-nome">Ana Luísa Schützer</p>
-      <img class="hero-logo" src="/img/logo-claro.webp" width="280" height="333" alt="ALS English">
+      <p class="hero-nome m-e-desce" style="--d:.05s">Ana Luísa Schützer</p>
+      <img class="hero-logo m-e-pop" style="--d:.25s" src="/img/logo-claro.webp" width="280" height="333" alt="ALS English">
     </div>
     <div class="hero-palco" aria-hidden="true">
-      <img class="hero-retrato" src="/img/hero-retrato.webp" width="799" height="1490" alt="" fetchpriority="high">
+      <img class="hero-retrato m-e-surge" style="--d:.1s" src="/img/hero-retrato.webp" width="799" height="1490" alt="" fetchpriority="high">
     </div>
     <div class="hero-texto">
-      <p class="kicker">Professional English</p>
-      <h1>Inglês para<br>a sua carreira.</h1>
-      <p class="hero-sub">Aulas de conversação online com professor, com método personalizado para você desenvolver a comunicação que sua profissão exige.</p>
+      <p class="kicker m-e" style="--d:.15s">Professional English</p>
+      <h1><span class="m-l"><span style="--d:.22s">Inglês para</span></span><span class="m-l"><span style="--d:.32s">a sua carreira.</span></span></h1>
+      <p class="hero-sub m-e" style="--d:.42s">Aulas de conversação online com professor, com método personalizado para você desenvolver a comunicação que sua profissão exige.</p>
       <div class="hero-btns">
-        <a class="btn btn-red" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20de%20Professional%20English." target="_blank" rel="noopener">Quero agendar minha aula</a>
-        <a class="btn btn-line" href="https://www.linkedin.com/in/analuisaschutzer/" target="_blank" rel="noopener">Siga no LinkedIn</a>
+        <a class="btn btn-red m-e m-brilho-loop" style="--d:.5s;--d-brilho:2.2s" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20de%20Professional%20English." target="_blank" rel="noopener">Quero agendar minha aula</a>
+        <a class="btn btn-line m-e" style="--d:.58s" href="https://www.linkedin.com/in/analuisaschutzer/" target="_blank" rel="noopener">Siga no LinkedIn</a>
       </div>
-      <p class="nota">Atendimento pelo WhatsApp</p>
+      <p class="nota m-e" style="--d:.66s">Atendimento pelo WhatsApp</p>
       <ul class="prova">
-        <li>Mais de 1.500 alunos atendidos</li>
-        <li>Alunos em 8+ países</li>
+        <li class="m-e" style="--d:.72s"><span>Mais de <data value="1500" data-m-conta="1500" data-m-atraso=".85">1.500</data> alunos atendidos</span></li>
+        <li class="m-e" style="--d:.8s"><span>Alunos em <data value="8" data-m-conta="8" data-m-atraso=".95">8</data>+ países</span></li>
       </ul>
     </div>
   </header>
@@ -368,7 +494,7 @@
           <li><span class="quando">2021–presente · Intérprete internacional</span>Atuação para uma empresa dos Estados Unidos.</li>
           <li><span class="quando">Desde 2021 · Validação da metodologia</span>Trabalho autônomo com aulas e material próprios.</li>
         </ul>
-        <p class="stat"><strong>Mais de 1.500</strong> <span>alunos atendidos</span></p>
+        <p class="stat"><strong>Mais de <data value="1500" data-m-conta="1500">1.500</data></strong> <span>alunos atendidos</span></p>
         <div class="cta"><a class="btn btn-red" href="https://wa.me/5516982130824?text=Ol%C3%A1!%20Quero%20agendar%20uma%20aula%20de%20Professional%20English." target="_blank" rel="noopener">Quero agendar minha aula</a></div>
       </div>
     </section>
@@ -403,8 +529,8 @@
         <h2>O mesmo trabalho pode valer mais em outro mercado.</h2>
         <p class="pergunta">(Por que olhar para o trabalho remoto internacional?)</p>
         <p class="exemplo">Exemplo ilustrativo</p>
-        <p class="usd">US$ 2.500</p>
-        <p class="conv">× R$ 5,15 = R$ 12.875</p>
+        <p class="usd">US$ <data value="2500" data-m-conta="2500">2.500</data></p>
+        <p class="conv">× R$ 5,15 = R$ <data value="12875" data-m-conta="12875" data-m-atraso=".6">12.875</data></p>
       </div>
       <figure class="foto">
         <img src="/img/aviao.webp" width="820" height="1350" loading="lazy" decoding="async" alt="Ana Luísa olhando pela janela de um avião ao pôr do sol">
@@ -480,5 +606,85 @@
     <p>© 2026 ALS English</p>
   </footer>
 
+  <script id="movimento-js">
+    window.M_CONFIG = {"sobe": "main .label, main h2, main .txt > p, main .txt > h3, main .cta, main .bloco-red, main .duas > div, .rodape p, .rodape nav a", "esq": "main .publico li, main .linha li, main .inclui li", "zoom": "main .usd, .rodape > img", "gira": "main .etapa", "foto": "main .foto, main .arte", "icone": "main .label img", "brilho": "main .cta .btn-red", "traco": "main .divisor", "hover": "main .etapa"};
+  (function () {
+    var doc = document, root = doc.documentElement, C = window.M_CONFIG || {};
+    var PASSO = C.passo || 0.1;
+    function cada(sel, fn) { if (!sel) return; var l = doc.querySelectorAll(sel); for (var i = 0; i < l.length; i++) fn(l[i], i); }
+    function revela(el) { el.classList.add('m-on'); }
+    function tudo() { cada('.m-r, .m-traco', revela); }
+    try {
+      var mm = window.matchMedia;
+      var reduz = !mm || !mm('(prefers-reduced-motion: no-preference)').matches;
+
+      // 1) marcar os elementos de cada página
+      var tipos = [['sobe', ''], ['esq', 'm-esq'], ['zoom', 'm-zoom'], ['gira', 'm-gira'], ['foto', 'm-foto']];
+      for (var k = 0; k < tipos.length; k++) {
+        (function (t) { cada(C[t[0]], function (el) { el.classList.add('m-r'); if (t[1]) el.classList.add(t[1]); }); })(tipos[k]);
+      }
+      cada(C.icone, function (el) { el.classList.add('m-icone'); });
+      cada(C.brilho, function (el) { el.classList.add('m-brilho'); });
+      cada(C.traco, function (el) { el.classList.add('m-traco'); });
+      cada(C.risca, function (el) { el.classList.add('m-risca'); });
+      cada(C.hover, function (el) { el.classList.add('m-hover'); });
+
+      if (reduz || !('IntersectionObserver' in window)) { tudo(); return; }
+
+      // 2) revelar ao entrar na tela; o que entra junto aparece em sequência
+      var io = new IntersectionObserver(function (es) {
+        var novos = [];
+        for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) novos.push(es[i].target);
+        novos.sort(function (a, b) { return (a.compareDocumentPosition(b) & 2) ? 1 : -1; });
+        for (var j = 0; j < novos.length; j++) {
+          novos[j].style.setProperty('--d', Math.min(j * PASSO, 0.6).toFixed(2) + 's');
+          revela(novos[j]);
+          io.unobserve(novos[j]);
+        }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      cada('.m-r, .m-traco', function (el) { io.observe(el); });
+
+      // 3) números que contam
+      var fmt = (window.Intl && Intl.NumberFormat) ? new Intl.NumberFormat('pt-BR') : null;
+      function conta(el) {
+        var alvo = parseFloat(el.getAttribute('data-m-conta')), fim = el.textContent;
+        if (!(alvo > 0)) return;
+        var espera = (parseFloat(el.getAttribute('data-m-atraso')) || 0.25) * 1000, dur = 1600;
+        el.style.minWidth = Math.ceil(el.getBoundingClientRect().width) + 'px';
+        el.textContent = '0';
+        setTimeout(function () {
+          var t0 = 0;
+          function passo(t) {
+            if (!t0) t0 = t;
+            var p = Math.min(1, (t - t0) / dur), v = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+            el.textContent = p < 1 ? (fmt ? fmt.format(v) : String(v)) : fim;
+            if (p < 1) requestAnimationFrame(passo); else el.style.minWidth = '';
+          }
+          requestAnimationFrame(passo);
+        }, espera);
+      }
+      var ioc = new IntersectionObserver(function (es) {
+        for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { ioc.unobserve(es[i].target); conta(es[i].target); }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      cada('[data-m-conta]', function (el) { ioc.observe(el); });
+
+      // 4) rede de segurança: ao parar de rolar, revela o que já está na tela; no fim da página, revela tudo
+      var espera = 0;
+      function confere() {
+        espera = 0;
+        var h = window.innerHeight || root.clientHeight;
+        if (h + (window.pageYOffset || root.scrollTop) >= root.scrollHeight - 4) { tudo(); return; }
+        var pend = doc.querySelectorAll('.m-r:not(.m-on), .m-traco:not(.m-on)'), ver = [];
+        for (var i = 0; i < pend.length; i++) { var r = pend[i].getBoundingClientRect(); if (r.top < h && r.bottom > 0) ver.push(pend[i]); }
+        for (var j = 0; j < ver.length; j++) revela(ver[j]);
+      }
+      window.addEventListener('scroll', function () { if (!espera) espera = setTimeout(confere, 250); }, { passive: true });
+      window.addEventListener('load', function () { setTimeout(confere, 1200); });
+      window.addEventListener('beforeprint', tudo);
+    } catch (e) {
+      root.classList.remove('js');
+    }
+  })();
+  </script>
 </body>
 </html>
