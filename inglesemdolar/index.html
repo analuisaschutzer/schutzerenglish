@@ -232,6 +232,11 @@
     .mod li:last-child { margin-bottom: 0; }
     .mod li::before { content: "•"; position: absolute; left: 3px; color: var(--cherry); font-weight: 800; }
 
+    .bonus .b-nome { margin: 18px 0 6px; font-family: var(--serif); font-size: clamp(21px, 5.8vw, 23px); line-height: 1.25; }
+    .bonus .rot + .b-nome { margin-top: 4px; }
+    .bonus p:not(.rot):not(.b-nome) { font-size: 17px; line-height: 1.45; }
+    .bonus .fine { margin-top: 16px; }
+    .bonus-linha { margin: 18px 0 0; }
     .rot { margin: 0 0 10px; font-size: 16px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cherry); }
     .como { margin-top: 4px; }
     .como ul { margin: 0; padding: 0; list-style: none; }
@@ -507,10 +512,11 @@
         </div>
         <div class="card white mod">
           <p class="num">Módulo 2</p>
-          <p class="nome">Erros comuns no trabalho</p>
+          <p class="nome">Inglês do dia a dia no trabalho</p>
           <p class="pilar">Comunique-se com clareza</p>
           <ul>
-            <li>Falsos cognatos e traduções literais.</li>
+            <li>Expressões que aparecem no dia a dia do trabalho.</li>
+            <li>Falsos cognatos (palavras parecidas com o português, mas com outro significado) e traduções literais.</li>
             <li>Formação, experiência e compromisso.</li>
             <li>Reuniões, computador e salário líquido.</li>
             <li>Exemplos para aplicar à sua rotina.</li>
@@ -526,6 +532,14 @@
             <li>Pedidos, mensagens e prazos.</li>
             <li>Exercícios com gabarito.</li>
           </ul>
+        </div>
+        <div class="card bonus">
+          <p class="rot">Receba também de bônus</p>
+          <p class="b-nome">Aula de phrasal verbs</p>
+          <p>Phrasal verbs são verbos que mudam de sentido com uma partícula: <i lang="en">give</i> é “dar”, mas <i lang="en">give up</i> é “desistir”. Quase todo mundo se confunde com eles; nesta aula, eu explico como funcionam.</p>
+          <p class="b-nome">Aula de expressões em músicas</p>
+          <p>Expressões em inglês que aparecem em músicas e o que elas significam.</p>
+          <p class="fine">Gravações de 2 aulas minhas.</p>
         </div>
 
         <figure class="ph" style="margin-bottom:0">
@@ -583,7 +597,7 @@
         </div>
         <div class="card white preco">
           <p class="num">Módulo 2</p>
-          <p class="nome">Erros comuns no trabalho</p>
+          <p class="nome">Inglês do dia a dia no trabalho</p>
           <p class="de"><span class="sr-only">De </span><s>R$ 299</s></p>
         </div>
         <div class="card white preco">
@@ -591,6 +605,7 @@
           <p class="nome">Siglas e expressões</p>
           <p class="de"><span class="sr-only">De </span><s>R$ 199</s></p>
         </div>
+        <p class="fine bonus-linha">+ 2 aulas bônus: phrasal verbs e expressões em músicas</p>
 
         <svg class="seta" viewBox="0 0 46 58" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M23 4v46"/>
