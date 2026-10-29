@@ -298,6 +298,7 @@
        Sem JavaScript, nada fica escondido. */
     [data-m-conta] { display: inline-block; text-align: right; white-space: nowrap; }
     .m-l { display: block; }
+    .m-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     @media (prefers-reduced-motion: no-preference) {
       @keyframes m-sobe { from { opacity: 0; translate: 0 26px; } to { opacity: 1; translate: 0 0; } }
@@ -613,10 +614,66 @@
     window.M_CONFIG = {"sobe": "main h2, main .wrap > p, main .card, main .cta, main .depo, main .seta", "zoom": "main .usd, main .brl, main .total", "foto": "main .ph", "brilho": "main .cta", "risca": "main .de s", "hover": "main .mod, main .depo"};
   (function () {
     var doc = document, root = doc.documentElement, C = window.M_CONFIG || {};
-    var PASSO = C.passo || 0.1;
+    var PASSO = C.passo || 0.1, inicio = Date.now();
+    var fmt = (window.Intl && Intl.NumberFormat) ? new Intl.NumberFormat('pt-BR') : null;
     function cada(sel, fn) { if (!sel) return; var l = doc.querySelectorAll(sel); for (var i = 0; i < l.length; i++) fn(l[i], i); }
-    function revela(el) { el.classList.add('m-on'); }
-    function tudo() { cada('.m-r, .m-traco', revela); }
+
+    // ---- números que contam do zero até o valor original ----
+    // prepara: enquanto o número ainda está invisível, mostra "0" (leitores de tela continuam lendo o valor certo)
+    function prepara(el) {
+      if (el.getAttribute('data-m-fim') !== null) return;
+      var fim = el.textContent;
+      el.setAttribute('data-m-fim', fim);
+      var sr = doc.createElement('span');
+      sr.className = 'm-sr'; sr.textContent = fim;
+      el.parentNode.insertBefore(sr, el);
+      el.setAttribute('aria-hidden', 'true');
+      el.style.minWidth = Math.ceil(el.getBoundingClientRect().width) + 'px';
+      el.textContent = '0';
+    }
+    // finaliza: volta exatamente ao texto e à estrutura originais
+    function finaliza(el) {
+      var fim = el.getAttribute('data-m-fim');
+      if (fim === null) return;
+      el.textContent = fim;
+      el.style.minWidth = '';
+      el.removeAttribute('aria-hidden');
+      el.removeAttribute('data-m-fim');
+      var sr = el.previousSibling;
+      if (sr && sr.className === 'm-sr') sr.parentNode.removeChild(sr);
+    }
+    function conta(el, extra) {
+      if (el.getAttribute('data-m-contou')) return;
+      el.setAttribute('data-m-contou', '1');
+      var alvo = parseFloat(el.getAttribute('data-m-conta'));
+      if (!(alvo > 0) || el.getAttribute('data-m-fim') === null) { finaliza(el); return; }
+      // na abertura, espera a entrada da capa; depois (ao rolar), começa quase na hora
+      var naAbertura = Date.now() - inicio < 600;
+      var espera = ((naAbertura ? (parseFloat(el.getAttribute('data-m-atraso')) || 0.25) : 0.12) + (extra || 0)) * 1000, dur = 1600;
+      setTimeout(function () {
+        var t0 = 0;
+        function passo(t) {
+          if (!t0) t0 = t;
+          var p = Math.min(1, (t - t0) / dur), v = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) { el.textContent = fmt ? fmt.format(v) : String(v); requestAnimationFrame(passo); }
+          else finaliza(el);
+        }
+        requestAnimationFrame(passo);
+      }, espera);
+    }
+    // ---- blocos que aparecem ----
+    function revela(el, contar) {
+      if (el.classList.contains('m-on')) return;
+      el.classList.add('m-on');
+      var cs = el.querySelectorAll('[data-m-conta]');
+      var d = parseFloat(el.style.getPropertyValue('--d')) || 0;
+      for (var i = 0; i < cs.length; i++) { if (contar) conta(cs[i], d); else if (!cs[i].getAttribute('data-m-contou')) finaliza(cs[i]); }
+    }
+    function tudo() {
+      cada('.m-r, .m-traco', function (el) { revela(el, false); });
+      cada('[data-m-conta]', function (el) { if (!el.getAttribute('data-m-contou')) finaliza(el); });
+    }
+
     try {
       var mm = window.matchMedia;
       var reduz = !mm || !mm('(prefers-reduced-motion: no-preference)').matches;
@@ -634,57 +691,43 @@
 
       if (reduz || !('IntersectionObserver' in window)) { tudo(); return; }
 
-      // 2) revelar ao entrar na tela; o que entra junto aparece em sequência
+      // 2) números começam em "0" (ainda invisíveis)
+      cada('[data-m-conta]', prepara);
+
+      // 3) revelar ao entrar na tela; o que entra junto aparece em sequência
       var io = new IntersectionObserver(function (es) {
         var novos = [];
         for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) novos.push(es[i].target);
         novos.sort(function (a, b) { return (a.compareDocumentPosition(b) & 2) ? 1 : -1; });
         for (var j = 0; j < novos.length; j++) {
           novos[j].style.setProperty('--d', Math.min(j * PASSO, 0.6).toFixed(2) + 's');
-          revela(novos[j]);
+          revela(novos[j], true);
           io.unobserve(novos[j]);
         }
       }, { rootMargin: '0px 0px -8% 0px' });
       cada('.m-r, .m-traco', function (el) { io.observe(el); });
 
-      // 3) números que contam
-      var fmt = (window.Intl && Intl.NumberFormat) ? new Intl.NumberFormat('pt-BR') : null;
-      function conta(el) {
-        var alvo = parseFloat(el.getAttribute('data-m-conta')), fim = el.textContent;
-        if (!(alvo > 0)) return;
-        var espera = (parseFloat(el.getAttribute('data-m-atraso')) || 0.25) * 1000, dur = 1600;
-        el.style.minWidth = Math.ceil(el.getBoundingClientRect().width) + 'px';
-        el.textContent = '0';
-        setTimeout(function () {
-          var t0 = 0;
-          function passo(t) {
-            if (!t0) t0 = t;
-            var p = Math.min(1, (t - t0) / dur), v = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
-            el.textContent = p < 1 ? (fmt ? fmt.format(v) : String(v)) : fim;
-            if (p < 1) requestAnimationFrame(passo); else el.style.minWidth = '';
-          }
-          requestAnimationFrame(passo);
-        }, espera);
-      }
+      // 4) números fora desses blocos (ex.: na capa): contam assim que ficam visíveis
       var ioc = new IntersectionObserver(function (es) {
-        for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { ioc.unobserve(es[i].target); conta(es[i].target); }
-      }, { rootMargin: '0px 0px -8% 0px' });
-      cada('[data-m-conta]', function (el) { ioc.observe(el); });
+        for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { ioc.unobserve(es[i].target); conta(es[i].target, 0); }
+      });
+      cada('[data-m-conta]', function (el) { if (!(el.closest && el.closest('.m-r'))) ioc.observe(el); });
 
-      // 4) rede de segurança: ao parar de rolar, revela o que já está na tela; no fim da página, revela tudo
-      var espera = 0;
+      // 5) rede de segurança: ao parar de rolar, revela o que já está na tela; no fim da página, revela tudo
+      var parada = 0;
       function confere() {
-        espera = 0;
+        parada = 0;
         var h = window.innerHeight || root.clientHeight;
         if (h + (window.pageYOffset || root.scrollTop) >= root.scrollHeight - 4) { tudo(); return; }
         var pend = doc.querySelectorAll('.m-r:not(.m-on), .m-traco:not(.m-on)'), ver = [];
         for (var i = 0; i < pend.length; i++) { var r = pend[i].getBoundingClientRect(); if (r.top < h && r.bottom > 0) ver.push(pend[i]); }
-        for (var j = 0; j < ver.length; j++) revela(ver[j]);
+        for (var j = 0; j < ver.length; j++) revela(ver[j], true);
       }
-      window.addEventListener('scroll', function () { if (!espera) espera = setTimeout(confere, 250); }, { passive: true });
+      window.addEventListener('scroll', function () { if (!parada) parada = setTimeout(confere, 250); }, { passive: true });
       window.addEventListener('load', function () { setTimeout(confere, 1200); });
       window.addEventListener('beforeprint', tudo);
     } catch (e) {
+      try { cada('[data-m-conta]', finaliza); } catch (e2) {}
       root.classList.remove('js');
     }
   })();
