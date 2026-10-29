@@ -411,6 +411,8 @@
     .ok svg { width: 16px; height: 16px; }
 
     /* Quem sou eu */
+    .foto-sobre { max-width: 420px; margin: 0 auto 36px; }
+    .foto-sobre img { display: block; width: 100%; height: auto; border-radius: 26px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
     .bio {
       margin: 0 auto;
       max-width: 32ch;
@@ -775,6 +777,7 @@
 
     <section class="sec escuro final" aria-labelledby="oi">
       <div class="sec-in">
+        <figure class="foto-sobre"><img src="/vip/img/ana-sobre.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Ana Luísa sorrindo, de blusa lilás"></figure>
         <h2 class="tit" id="oi">Oi, eu sou a <em>Ana&nbsp;Luísa.</em></h2>
         <p class="bio">Professora de inglês e fundadora da ALS English. Desde 2021, trabalho de forma remota no mercado internacional, recebendo em dólar.</p>
         <ul class="numeros">
@@ -893,7 +896,7 @@
     })();
   </script>
   <script id="movimento-js">
-    window.M_CONFIG = {"sobe": ".form, .sec .tit, .sec .intro, .sec .lead, .sec .card, .sec .cta, .sec .note, .lista li, .sec .bonus, .publico li, .bio, .final .insta, .final .logo", "zoom": ".numeros li", "icone": ".card .ic", "brilho": ".sec .cta", "hover": ".card"};
+    window.M_CONFIG = {"sobe": ".form, .sec .tit, .sec .intro, .sec .lead, .sec .card, .sec .cta, .sec .note, .lista li, .sec .bonus, .publico li, .bio, .final .insta, .final .logo", "zoom": ".numeros li", "foto": ".foto-sobre", "icone": ".card .ic", "brilho": ".sec .cta", "hover": ".card"};
   (function () {
     var doc = document, root = doc.documentElement, C = window.M_CONFIG || {};
     var PASSO = C.passo || 0.1, inicio = Date.now();
