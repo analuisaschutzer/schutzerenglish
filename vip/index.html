@@ -676,9 +676,9 @@
   </style>
 </head>
 <body>
-  <div class="contagem m-e-desce" style="--d:0s" id="contagem" data-alvo="2026-11-01T00:00:00-03:00">
+  <div class="contagem m-e-desce" style="--d:0s" id="contagem" data-alvo="2026-11-01T12:00:00-03:00">
     <div class="cd-in">
-      <p class="cd-rot"><span>Oferta VIP</span><span>1º de novembro</span><b class="cd-hoje-txt">Hoje: a oferta VIP chega no grupo</b></p>
+      <p class="cd-rot"><span>Oferta VIP</span><span>1º/11 às 12h</span><b class="cd-hoje-txt">A oferta VIP já está no grupo</b></p>
       <div class="cd-nums" aria-hidden="true">
         <div class="cd-box"><b data-cd="d">00</b><span>dias</span></div>
         <div class="cd-box"><b data-cd="h">00</b><span>horas</span></div>
@@ -797,7 +797,7 @@
   </div>
 
   <script>
-    /* Contagem até a oferta VIP (1º/11, horário de Brasília) */
+    /* Contagem até a oferta VIP (1º/11 às 12h, horário de Brasília); depois: "já está no grupo" até 2/11 às 12h */
     (function () {
       var bar = document.getElementById('contagem');
       if (!bar) return;
