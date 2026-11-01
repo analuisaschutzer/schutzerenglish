@@ -625,8 +625,19 @@
 
         <div class="card"><p>Com uma professora de inglês especialista em mercado internacional.</p></div>
 
-        <a class="cta" id="checkout" href="https://pay.kiwify.com.br/9X91uq0">Quero o inglês<br>em dólar</a>
+        <a class="cta" id="checkout" href="https://pay.kiwify.com.br/dVMpHHn">Quero o inglês<br>em dólar</a>
         <p class="seguro">Pagamento seguro pela Kiwify</p>
+        <script>
+          /* Oferta do dia 1 (Lista VIP) até 1º/11 às 23:59 (Brasília). A partir de 2/11 às 0h, vale a oferta do público. */
+          (function () {
+            var troca = Date.parse('2026-11-02T00:00:00-03:00');
+            if (isNaN(troca) || Date.now() < troca) return;
+            var a = document.getElementById('checkout');
+            if (a) a.href = 'https://pay.kiwify.com.br/I8bGbI9';
+            var t = document.querySelectorAll('[data-dia2]');
+            for (var i = 0; i < t.length; i++) t[i].textContent = t[i].getAttribute('data-dia2');
+          })();
+        </script>
       </div>
     </section>
   </main>
