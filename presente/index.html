@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aula especial | ALS English</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FDF2EC">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #FDF2EC;
+      --sombra: 0 24px 60px -24px rgba(90, 30, 30, .45), 0 2px 8px rgba(90, 30, 30, .08);
+      --borda: transparent;
+      --theme: #FDF2EC;
+      --reserva: 280px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); }
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--bg);
+      font-family: Georgia, 'Times New Roman', serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 4.5vh, 40px);
+      padding: max(24px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+    }
+    .logo { display: block; width: 148px; height: auto; }
+    .logo-escura { width: 84px; }
+    .player {
+      width: 100%;
+      /* no computador, o vídeo nunca passa da altura da tela */
+      max-width: min(960px, calc((100vh - var(--reserva)) * 16 / 9));
+      max-width: min(960px, calc((100svh - var(--reserva)) * 16 / 9));
+      min-width: min(100%, 320px);
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      outline: 1px solid var(--borda);
+      outline-offset: -1px;
+    }
+    .player iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .vazio {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+      color: rgba(255, 255, 255, .6); font-size: 15px; letter-spacing: .02em;
+    }
+    .play {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: #AC123B; position: relative;
+    }
+    .play::after {
+      content: ''; position: absolute; left: 27px; top: 21px;
+      border-left: 20px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent;
+    }
+    @keyframes entra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .logo { animation: entra .8s cubic-bezier(.2, .7, .2, 1) both; }
+    .player { animation: entra .8s .15s cubic-bezier(.2, .7, .2, 1) both; }
+    @media (min-width: 700px) { .logo { width: 168px; } .logo-escura { width: 96px; } }
+    @media (max-height: 520px) {
+      main { gap: 12px; padding-top: max(12px, env(safe-area-inset-top)); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+      .logo, .logo-escura { width: 64px; }
+      :root { --reserva: 120px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .logo, .player { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/img/logo-fundo-claro.webp" width="360" height="360" alt="ALS English">
+    <div class="player"><div class="vazio"><span class="play" aria-hidden="true"></span><p>Aula em breve</p></div></div>
+  </main>
+</body>
+</html>
