@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Aula especial | ALS English</title>
+  <title>Sua aula presente | ALS English</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#FDF2EC">
   <meta name="color-scheme" content="light">
@@ -12,76 +12,185 @@
   <style>
     :root {
       --bg: #FDF2EC;
+      --ink: #4F1B1B;
+      --ink-soft: #7A5A57;
+      --cherry: #AC123B;
+      --cherry-hover: #C21547;
+      --linha: rgba(79, 27, 27, .16);
       --sombra: 0 24px 60px -24px rgba(90, 30, 30, .45), 0 2px 8px rgba(90, 30, 30, .08);
-      --borda: transparent;
-      --theme: #FDF2EC;
-      --reserva: 280px;
+      --reserva: 345px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { background: var(--bg); }
     body {
-      min-height: 100vh;
-      min-height: 100svh;
-      background: var(--bg);
+      min-height: 100vh; min-height: 100svh;
+      background: var(--bg); color: var(--ink);
       font-family: Georgia, 'Times New Roman', serif;
       -webkit-font-smoothing: antialiased;
     }
     main {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(20px, 4.5vh, 40px);
+      min-height: 100vh; min-height: 100svh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: clamp(18px, 3.6vh, 34px);
       padding: max(24px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
     }
     .logo { display: block; width: 148px; height: auto; }
-    .logo-escura { width: 84px; }
+
+    /* ---- player ---- */
     .player {
+      position: relative;
       width: 100%;
-      /* no computador, o vídeo nunca passa da altura da tela */
       max-width: min(960px, calc((100vh - var(--reserva)) * 16 / 9));
       max-width: min(960px, calc((100svh - var(--reserva)) * 16 / 9));
       min-width: min(100%, 320px);
       aspect-ratio: 16 / 9;
-      background: #000;
-      border-radius: 14px;
-      overflow: hidden;
+      background: #000 center / cover no-repeat;
+      border-radius: 14px; overflow: hidden;
       box-shadow: var(--sombra);
-      outline: 1px solid var(--borda);
-      outline-offset: -1px;
     }
-    .player iframe { display: block; width: 100%; height: 100%; border: 0; }
-    .vazio {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-      color: rgba(255, 255, 255, .6); font-size: 15px; letter-spacing: .02em;
+    .player iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; }
+    .assistir {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0, 0, 0, .38); border: 0; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
-    .play {
-      width: 68px; height: 68px; border-radius: 50%;
-      background: #AC123B; position: relative;
+    .assistir span.rotulo {
+      display: inline-flex; align-items: center; gap: 12px;
+      max-width: calc(100% - 28px);
+      background: var(--cherry); color: #fff;
+      font: 400 clamp(15px, 4.2vw, 19px)/1.25 Georgia, 'Times New Roman', serif; letter-spacing: .01em;
+      padding: 15px clamp(18px, 4vw, 30px); min-height: 52px;
+      border-radius: 999px;
+      box-shadow: 0 10px 28px -8px rgba(0, 0, 0, .55);
+      transition: background .2s, transform .2s;
     }
-    .play::after {
-      content: ''; position: absolute; left: 27px; top: 21px;
-      border-left: 20px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent;
+    .assistir:hover span.rotulo { background: var(--cherry-hover); transform: scale(1.03); }
+    .assistir:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+    .assistir svg { flex: none; width: 18px; height: 18px; }
+
+    /* ---- baixar material ---- */
+    .material { width: min(100%, 380px); }
+    .material summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 52px; padding: 14px 24px;
+      border: 1.5px solid var(--ink); border-radius: 999px;
+      color: var(--ink); font-size: 17px; letter-spacing: .01em;
+      transition: background .2s, color .2s;
+      -webkit-tap-highlight-color: transparent;
     }
+    .material summary::-webkit-details-marker { display: none; }
+    .material summary:hover { background: var(--ink); color: #FDF2EC; }
+    .material summary:focus-visible { outline: 3px solid var(--cherry); outline-offset: 3px; }
+    .material summary svg { width: 18px; height: 18px; flex: none; }
+    .material summary .seta { width: 14px; height: 14px; transition: transform .25s; margin-left: 2px; }
+    .material[open] summary .seta { transform: rotate(180deg); }
+    .arquivos {
+      margin-top: 12px; background: #FFFBF8; border: 1px solid var(--linha); border-radius: 14px;
+      box-shadow: 0 14px 34px -18px rgba(90, 30, 30, .35); overflow: hidden;
+    }
+    .arquivos a {
+      display: flex; align-items: center; gap: 14px; padding: 15px 16px;
+      color: var(--ink); text-decoration: none; -webkit-tap-highlight-color: transparent;
+    }
+    .arquivos a + a { border-top: 1px solid var(--linha); }
+    .arquivos a:hover { background: rgba(172, 18, 59, .06); }
+    .arquivos a:focus-visible { outline: 3px solid var(--cherry); outline-offset: -3px; }
+    .arquivos .txt { flex: 1; min-width: 0; }
+    .arquivos b { display: block; font-weight: 400; font-size: 16px; line-height: 1.3; }
+    .arquivos small { display: block; margin-top: 3px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.3; }
+    .arquivos .baixa {
+      flex: none; width: 40px; height: 40px; border-radius: 50%;
+      background: var(--cherry); color: #fff; display: flex; align-items: center; justify-content: center;
+    }
+    .arquivos a:hover .baixa { background: var(--cherry-hover); }
+    .arquivos .baixa svg { width: 18px; height: 18px; }
+
     @keyframes entra { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
     .logo { animation: entra .8s cubic-bezier(.2, .7, .2, 1) both; }
-    .player { animation: entra .8s .15s cubic-bezier(.2, .7, .2, 1) both; }
-    @media (min-width: 700px) { .logo { width: 168px; } .logo-escura { width: 96px; } }
+    .player { animation: entra .8s .12s cubic-bezier(.2, .7, .2, 1) both; }
+    .material { animation: entra .8s .24s cubic-bezier(.2, .7, .2, 1) both; }
+    @media (min-width: 700px) { .logo { width: 168px; } }
     @media (max-height: 520px) {
       main { gap: 12px; padding-top: max(12px, env(safe-area-inset-top)); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
-      .logo, .logo-escura { width: 64px; }
-      :root { --reserva: 120px; }
+      .logo { width: 64px; }
+      :root { --reserva: 176px; }
     }
-    @media (prefers-reduced-motion: reduce) { .logo, .player { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .logo, .player, .material { animation: none; } .assistir span.rotulo, .seta { transition: none; } }
   </style>
 </head>
 <body>
   <main>
     <img class="logo" src="/img/logo-fundo-claro.webp" width="360" height="360" alt="ALS English">
-    <div class="player"><div class="vazio"><span class="play" aria-hidden="true"></span><p>Aula em breve</p></div></div>
+
+    <div class="player" id="player" data-video="pRhf9H11a9Q">
+      <button class="assistir" id="assistir" type="button" aria-label="Assista à sua aula presente">
+        <span class="rotulo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>
+          Assista à sua aula presente
+        </span>
+      </button>
+      <noscript>
+        <style>.assistir { display: none; }</style>
+        <iframe src="https://www.youtube-nocookie.com/embed/pRhf9H11a9Q?rel=0&amp;modestbranding=1&amp;playsinline=1" title="Aula presente | ALS English" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </noscript>
+    </div>
+
+    <details class="material">
+      <summary>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
+        Baixar material
+        <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="arquivos">
+        <a href="/presente/Schutzer-English-Construir-Ideias.pdf" download="Schutzer-English-Construir-Ideias.pdf">
+          <span class="txt"><b>Como construir e explicar ideias em inglês</b><small>Material da aula · PDF · 27&nbsp;páginas · 3,9&nbsp;MB</small></span>
+          <span class="baixa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg></span>
+        </a>
+        <a href="/presente/Caderno-de-Fixacao.pdf" download="Caderno-de-Fixacao.pdf">
+          <span class="txt"><b>Caderno de Fixação</b><small>Exercícios com gabarito · PDF · 4&nbsp;páginas · 1,2&nbsp;MB</small></span>
+          <span class="baixa" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg></span>
+        </a>
+      </div>
+    </details>
   </main>
+
+  <script>
+    (function () {
+      var player = document.getElementById('player');
+      var botao = document.getElementById('assistir');
+      if (!player || !botao) return;
+      var id = player.getAttribute('data-video');
+
+      // capa do vídeo (a do YouTube); se não existir, fica o fundo preto
+      function capa(url, depois) {
+        var img = new Image();
+        img.onload = function () {
+          if (img.naturalWidth > 200) { player.style.backgroundImage = 'url(' + url + ')'; }
+          else if (depois) { depois(); }
+        };
+        img.onerror = function () { if (depois) depois(); };
+        img.src = url;
+      }
+      try {
+        capa('https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg', function () {
+          capa('https://i.ytimg.com/vi/' + id + '/hqdefault.jpg');
+        });
+      } catch (e) {}
+
+      botao.addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+        f.title = 'Aula presente | ALS English';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        f.setAttribute('allowfullscreen', '');
+        player.style.backgroundImage = 'none';
+        player.appendChild(f);
+        botao.remove();
+      });
+    })();
+  </script>
 </body>
 </html>
